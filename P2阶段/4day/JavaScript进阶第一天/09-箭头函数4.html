@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+
+    // 1. 当箭头函数只有一个参数时，可以省略参数的小括号，其余个数不能省略（没有参数也需要写小括号）
+
+    const init = (arg) => {
+
+    }
+
+    init("a")
+
+    // 简写
+
+    const init = arg => {
+
+    }
+
+    // 2. 当箭头函数的函数体只有一句代码 可以省略函数体大括号，这句代码就是返回值（可以不用写return）
+    const test0 = () => {
+        console.log("123")
+    }
+
+    // 简写为
+    const test = () => console.log("123")
+    console.log(test())
+
+    const test1 = () => {
+        return 666
+    }
+
+    // 简写为
+
+    const test2 = () => 666
+
+    console.log(test1())
+
+    // 3. 如果返回的是个对象，则需要把对象用小括号包裹
+    const test4 = () => {
+        return {
+            name: "jack"
+        }
+    }
+
+    // 简写
+    const test5 = () => ({ name: "jack" })
+
+    // 4. 箭头函数里面没有arguments，但是有剩余参数
+    const test6 = (a, b, ...c) => {
+        console.log(c)
+        // console.log(arguments)
+    }
+    test6(1, 2, 3, 4, 4, 5)
+
+
+    // // 函数的第一种方法
+    // function init() {
+
+    // }
+    // init()
+
+
+    // // 函数表达式的写法
+    // const test = function () {
+
+    // }
+    // test()
+
+    // // 所谓的箭头函数就是普通的函数表达式更简洁的一种写法
+    // // 箭头函数更适用于那些本来需要匿名函数的地方,写法更加简单
+
+    // // 箭头函数
+    // const test1 = () => {
+
+    // }
+</script>

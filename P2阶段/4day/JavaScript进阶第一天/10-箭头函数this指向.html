@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">click</button>
+</body>
+
+</html>
+<script>
+    console.log(this) // window
+
+    // 普通函数中,指向的调用者
+    function test() {
+        console.log(this) // 此处为window
+    }
+    test()
+
+    const btn = document.getElementById("btn")
+    btn.onclick = function () {
+        console.log(this) // 当前指向btn 
+    }
+
+</script>

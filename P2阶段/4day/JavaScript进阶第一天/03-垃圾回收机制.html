@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 浏览器会为变量分配内存
+    const age = 18  // 垃圾机制回收
+
+    // 浏览器会为对象分配内存  垃圾机制回收
+    const obj = {
+        name: "jack"
+    }
+
+    // 为函数分配内存
+    function fn() {
+        const age = 110
+        console.log(age) // 垃圾机制回收
+    }
+    fn()
+
+    // 内存驻留(内存泄露)
+    function init() {
+        setInterval(() => {
+            console.log("!")
+        }, 3000)
+    }
+    init()
+
+
+</script>

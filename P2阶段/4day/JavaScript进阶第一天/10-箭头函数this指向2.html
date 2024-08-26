@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">click</button>
+</body>
+
+</html>
+<script>
+    // 当使用箭头函数时, 它的this指向的是它的上下文对象
+
+    const btn = document.getElementById("btn")
+
+    // window
+    // btn.onclick = () => {
+    //     console.log(this)
+    // }
+
+
+    btn.onclick = function () {
+        // btn
+        setInterval(() => {
+            console.log(this)
+        }, 1000)
+        // btn
+        // const target = () => {
+        //     console.log(this)
+        // }
+        // target()
+    }
+
+
+
+</script>

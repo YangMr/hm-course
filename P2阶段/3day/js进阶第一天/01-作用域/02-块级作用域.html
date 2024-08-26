@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 全局作用域 有什么问题没有
+
+    const h = 10
+
+    // es5 var  块级没有块级作用域特点
+    // es6 let const  有块姐作用域
+
+    // 花括号就是块级作用域
+    {
+        const a = 10
+        console.log(a, "1")
+
+        console.log(h)
+    }
+
+    {
+        const b = 20
+
+        const c = a + b
+
+        // === 30
+        console.log(c)
+
+        console.log(h)
+    }
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // const 声明的常量 --> 一旦声明,则无法更改的变量 具有块级作用域的特点
+    // const 不允许重复声明
+
+    // let 声明的变量  
+
+    // const c = 20 // 可以重新赋值的 // 可以重复声明 具有块级作用域的特点
+
+
+
+    // 全局变量
+    let a = 11
+
+    function f() {
+        // 局部变量
+        // let a = 1
+        // console.log(b)
+        function g() {
+            // let a = 2
+            // let b = 10
+
+            console.log(a) // 2 1 11
+        }
+
+        g()
+    }
+
+
+    f()
+</script>
