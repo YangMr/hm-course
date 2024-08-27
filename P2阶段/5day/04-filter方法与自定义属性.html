@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div data-a="0">123</div>
+</body>
+
+</html>
+<script>
+    // html元素如何绑定自定义属性以及如何获取自定义属性的值
+    const dom = document.querySelector("div")
+
+    dom.onclick = function (event) {
+        console.log(event.target.dataset.a)
+    }
+
+
+</script>

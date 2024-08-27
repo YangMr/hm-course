@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* 盒模型 - 怪异  真实的宽度(元素本身的宽度): 元素本身的宽度 + 内边距 + 边框*/
+            box-sizing: border-box;
+        }
+
+        .list {
+            width: 1000px;
+            margin: 50px auto;
+            /* 让元素在一行显示 */
+            display: flex;
+            /* 当前行放不下的时候进行换行 */
+            flex-wrap: wrap;
+        }
+
+        .item {
+            width: 240px;
+
+            padding: 20px 30px;
+            transition: all 0.5s;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .item:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .item img {
+            width: 100%;
+        }
+
+        .item .name {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .item .price {
+            font-size: 22px;
+            color: firebrick;
+        }
+
+        .item .price span {
+            font-size: 14px;
+        }
+
+        .item .price::before {
+            content: "¥";
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="list">
+        <!-- <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div>
+        <div class="item">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">称心如意手摇咖啡磨豆机咖啡豆研磨机</p>
+            <p class="price">
+                289.00
+            </p>
+        </div> -->
+    </div>
+</body>
+
+</html>
+<script>
+    // 1. 定义后台返回的数据
+    const goodsList = [
+        {
+            id: '4001172',
+            name: '称心如意手摇咖啡磨豆机咖啡豆研磨机',
+            price: '289.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg',
+        },
+        {
+            id: '4001594',
+            name: '日式黑陶功夫茶组双侧把茶具礼盒装',
+            price: '288.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/3346b7b92f9563c7a7e24c7ead883f18.jpg',
+        },
+        {
+            id: '4001009',
+            name: '竹制干泡茶盘正方形沥水茶台品茶盘',
+            price: '109.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/2d942d6bc94f1e230763e1a5a3b379e1.png',
+        },
+        {
+            id: '4001874',
+            name: '古法温酒汝瓷酒具套装白酒杯莲花温酒器',
+            price: '488.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/44e51622800e4fceb6bee8e616da85fd.png',
+        },
+        {
+            id: '4001649',
+            name: '大师监制龙泉青瓷茶叶罐',
+            price: '139.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/4356c9fc150753775fe56b465314f1eb.png',
+        },
+        {
+            id: '3997185',
+            name: '与众不同的口感汝瓷白酒杯套组1壶4杯',
+            price: '108.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/8e21c794dfd3a4e8573273ddae50bce2.jpg',
+        },
+        {
+            id: '3997403',
+            name: '手工吹制更厚实白酒杯壶套装6壶6杯',
+            price: '99.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/af2371a65f60bce152a61fc22745ff3f.jpg',
+        },
+        {
+            id: '3998274',
+            name: '德国百年工艺高端水晶玻璃红酒杯2支装',
+            price: '139.00',
+            picture: 'https://yanxuan-item.nosdn.127.net/8896b897b3ec6639bbd1134d66b9715c.jpg',
+        },
+    ]
+
+
+
+    // 2. 遍历后台返回的数据 8
+    const list = goodsList.map(item => {
+        // 3. 动态创建 HTML 结构
+        return `
+            <div class="item">
+                <img src="${item.picture}" />  
+                <p class="name">${item.name}</p>   
+                <p class="price">${item.price}</p>  
+            </div> 
+            `
+    })
+
+    // 3. 设置渲染的内容
+
+    document.querySelector(".list").innerHTML = list.join("")
+</script>
