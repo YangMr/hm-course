@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // const arr = [1, 2, 3, 4]
+    // 数组解构
+    // const [a, b, c, d] = [1, 2, 3, 4]
+    // const [a, b, c, d] = arr
+
+
+    // 基本语法:
+    // 1. 右侧数组的值将被赋值给左侧的变量
+    // 2. 变量的顺序队赢数组值的位置依次进行赋值操作
+
+    // 交换两个变量
+    // let a = 1
+    // let b = 3;
+
+    // // let c = a
+    // // a = b
+    // // b = c
+
+
+    // [b, a] = [a, b]
+    // console.log(a)
+    // console.log(b)
+
+
+
+    // let a = 1;
+    // let b = 3;
+
+    // [b, a] = [a, b]
+
+
+    // const pc = ["海尔", "联想", "小米", "方正"]
+
+    // const [hr, lx, mi, fz] = pc
+
+    // console.log(hr)
+    // console.log(lx)
+    // console.log(mi)
+    // console.log(fz)
+
+
+    // function getValue() {
+    //     return [100, 60]
+    // }
+
+    // // max min
+
+    // const [max, min] = getValue()
+    // console.log(max)
+    // console.log(min)
+
+    // 变量和值不匹配的情况
+
+    // 变量多值少的情况
+    // const [a, b, c, d] = ["小米", "苹果", "华为"]
+    // console.log(a)
+    // console.log(b)
+    // console.log(c)
+    // console.log(d)
+
+    // 结果: 变量的数量大于值数量时, 多余的变量将被赋值为undefined
+
+
+    // 变量多值多的情况
+
+
+    // 防止有undefined传递值的情况, 可以设置默认值
+
+    const [a = "手机", b = "华为"] = ["小米"]
+
+    console.log(a)
+    console.log(b)
+
+</script>

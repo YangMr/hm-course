@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // const a = 1
+    // const user = {
+    //     username: "jack",
+    //     age: 18,
+    //     gender: '男'
+    // }
+
+    // const username = user.username
+    // const age = user.age
+    // const gender = user.gender
+
+    // const { a, age, gender } = user
+
+    // console.log(a)
+    // console.log(age)
+    // console.log(gender)
+
+    // 基本语法
+    // 将右侧的对象的属性值将被赋值给左侧的变量
+
+    // 注意:
+    // 1. 对象的属性名一定要和变量名一致
+    // 2. 变量名如果没有对象属性名相同的则默认是undefined
+    // 3. 注意解构的变量名不要和外面的变量名冲突否则报错
+
+
+    // 从一个对象中提取变量 并 同时修改新的变量名
+    // const pig = { name: "佩奇", age: 18 }
+    // // 把原来的name 重新命名为 a
+    // const { name: a, age } = pig
+
+    // console.log(a)
+
+    // 对象数组解构
+    const pig = [
+        {
+            name: '佩奇',
+            age: 18
+        }
+    ]
+
+    const [{ name: a, age: b }] = pig
+
+    console.log(a)
+    console.log(b)
+</script>
