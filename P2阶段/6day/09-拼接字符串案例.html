@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sku {
+            width: 140px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            padding: 10px 20px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sku"></div>
+</body>
+
+</html>
+<script>
+
+    const sku = document.querySelector(".sku")
+
+    const spec = {
+        size: "40cm*40cm",
+        color: "黑色"
+    }
+
+    const value = Object.values(spec).join("/")
+    sku.innerHTML = value
+
+
+    // 结果 : 40cm*40cm/黑色
+
+
+</script>

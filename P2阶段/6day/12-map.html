@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <!-- <li>李华1 停用</li>
+        <li>李华2 启用</li>
+        <li>李华3 停用</li>
+        <li>李华4 启用</li>
+        <li>李华5 停用</li> -->
+    </ul>
+</body>
+
+</html>
+<script>
+    // status 0 停用 1启用 2 禁用 3 销毁
+    const arr = [
+        {
+            id: 1,
+            name: "李华1",
+            status: 0,
+            age: 20
+        },
+        {
+            id: 2,
+            name: "李华2",
+            status: 1,
+            age: 20
+        },
+        {
+            id: 3,
+            name: "李华3",
+            status: 2,
+            age: 20
+        },
+        {
+            id: 4,
+            name: "李华4",
+            status: 3,
+            age: 20
+        },
+        {
+            id: 5,
+            name: "李华5",
+            status: 1,
+            age: 20
+        }
+    ]
+
+
+    const dict = {
+        0: "停用",
+        1: "启用",
+        2: "禁用",
+        3: "销毁"
+    }
+
+    const formatArr = arr.map(item => {
+        // item.status = item.status === 0 ? "停用" : "启用"
+        item.status = dict[item.status]
+        return item
+    })
+
+    console.log(formatArr)
+
+
+    function render(data) {
+        const ul = document.querySelector("ul")
+        const itemArr = data.map(item => {
+            return `
+                <li>
+                ${item.name} - ${item.status}    
+                </li>
+            `
+        })
+
+        ul.innerHTML = itemArr.join("")
+    }
+    render(formatArr)
+
+
+</script>

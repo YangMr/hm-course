@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>张三1</li>
+        <li>张三2</li>
+        <li>张三3</li>
+        <li>张三4</li>
+    </ul>
+</body>
+
+</html>
+<script>
+
+    const oli = document.querySelectorAll("li")
+
+
+    const newli = Array.from(oli)
+
+    newli.push("123")
+    console.log(newli)
+
+    oli.every(item => console.log(item))
+</script>

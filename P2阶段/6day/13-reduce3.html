@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 求数组所有元素之和
+    // const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+
+    // let result = 0
+
+    // for (let i = 0; i < arr.length; i++) {
+    //     result += arr[i]
+    // }
+
+    // console.log("result", result)
+
+
+    // arr.reduce(function (上一次的值, 当前值) { }, 初始值)
+
+    // 第一次 value : 0  cuurent : 1  0 + 1 = 1
+    // 第二次 value : 1 current : 2  1 + 2 = 3
+    // 第三次 value : 3 current : 3  3 + 3 = 6
+    // 第四次 value : 6 current : 4  6 + 4 = 10
+
+    // 78
+
+    // const result = arr.reduce(function (value, current) {
+    //     return value + current
+    // }, 0)
+
+    // console.log(result)
+
+
+    // 根据后台返回的数据,请计算出当月所有的支出薪资(所发所有工资)
+    const arr = [
+        {
+            name: "张三",
+            salary: 10000
+        },
+        {
+            name: "李四",
+            salary: 20000
+        },
+        {
+            name: "王五",
+            salary: 30000
+        }
+    ]
+
+    const result = arr.reduce((old, current) => {
+        return old + current.salary
+    }, 0)
+
+    console.log("当月支出薪资:", result)
+
+</script>

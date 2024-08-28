@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="all">全选</button>
+    <button class="not">全不选</button>
+
+    <div>
+        <input class="cks" type="checkbox" />英雄联盟
+        <input class="cks" type="checkbox" />王者童谣
+        <input class="cks" type="checkbox" />黑神话悟空
+        <input class="cks" type="checkbox" />吃鸡
+        <input class="cks" type="checkbox" />1
+        <input class="cks" type="checkbox" />2
+        <input class="cks" type="checkbox" />3
+        <input class="cks" type="checkbox" />4
+    </div>
+</body>
+
+</html>
+<script>
+
+
+    // js控制复选框的选中或者不选中, 通过checked的值来控制 true 选中 false不选中
+
+    // 1. 点击全选按钮
+    // 2. 获取所有的复选框(伪数组)
+
+
+    const all = document.querySelector(".all")
+    const not = document.querySelector(".not")
+    const cks = document.querySelectorAll(".cks")
+
+    all.addEventListener("click", () => {
+        for (var i = 0; i < cks.length; i++) {
+            cks[i].checked = true
+        }
+    })
+
+
+    not.addEventListener("click", () => {
+        // forEach
+
+        cks.forEach(item => item.checked = false)
+
+    })
+
+
+
+    // 3. 遍历所有的复选框,设置每个复选框的checked为true
+
+</script>

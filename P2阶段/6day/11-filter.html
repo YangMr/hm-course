@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="username" type="text" placeholder="查找姓名">
+    <input class="gender" type="text" placeholder="查找男女">
+    <input class="type" type="text" placeholder="查找免费或者收费">
+    <button class="btn">查找</button>
+
+    <ul>
+        <!-- <li>张三1</li>
+        <li>张三2</li>
+        <li>张三3</li>
+        <li>张三4</li>
+        <li>张三5</li> -->
+    </ul>
+</body>
+
+</html>
+<script>
+
+    // sex 1 男  0 女
+    // type 1 免费  2 收费
+    const arr = [
+        {
+            id: 1,
+            name: "张三11",
+            age: 18,
+            sex: "1",
+            type: "1"
+        },
+        {
+            id: 2,
+            name: "张三22",
+            age: 18,
+            sex: "0",
+            type: 2
+        },
+        {
+            id: 3,
+            name: "张三33",
+            age: 18,
+            sex: "1",
+            type: 2
+        },
+        {
+            id: 4,
+            name: "张三44",
+            age: 18,
+            sex: "1",
+            type: 2
+        },
+        {
+            id: 5,
+            name: "张三5",
+            age: 18,
+            sex: "0",
+            type: 1
+        }
+    ]
+
+
+    // 1. 查找出姓名是张三3的这条数据
+    // 2. 查找所有的女性 或者 男性
+
+    const btn = document.querySelector(".btn")
+    const username = document.querySelector(".username")
+    const gender = document.querySelector(".gender")
+    const type = document.querySelector(".type")
+    btn.addEventListener("click", () => {
+        const val = username.value
+        const sex = gender.value
+        const t = type.value
+        const data = arr.filter(item => {
+            if (item.name === val && item.type === t && item.sex === sex) {
+                return item
+            }
+        })
+        render(data)
+        console.log(data)
+        // render(data)
+
+        // const sexData = arr.filter(item => item.sex == sex)
+        // console.log(sexData)
+        // render(sexData)
+
+        // const tData = arr.filter(item => item.type == t)
+        // console.log(tData)
+        // render(tData)
+    })
+
+
+    function render(data) {
+        const ul = document.querySelector("ul")
+        const itemArr = data.map(item => {
+            return `
+            <li>${item.name}</li>
+        `
+        })
+
+        console.log(itemArr.join(""))
+        ul.innerHTML = itemArr.join("")
+    }
+    render(arr)
+
+
+
+</script>

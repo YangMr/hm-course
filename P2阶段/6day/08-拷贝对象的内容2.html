@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    const o = { name: "jack", age: 20 }
+
+    const a = { like: "rose", count: 100 }
+
+    const c = { title: "hello" }
+
+    const obj = {}
+
+    // for (let key in o) {
+    //     obj[key] = o[key]
+    // }
+
+    // for (let key in a) {
+    //     obj[key] = a[key]
+    // }
+
+    // console.log(obj)
+
+    Object.assign(obj, o, a, c)
+
+    obj.name = "666"
+    console.log(obj)
+
+    console.log(o)
+
+</script>
