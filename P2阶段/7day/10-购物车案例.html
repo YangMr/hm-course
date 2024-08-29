@@ -9,11 +9,12 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         .list {
             width: 1000px;
-            margin: 100px auto;
+            margin: 100px auto 0;
         }
 
         .row {
@@ -30,8 +31,8 @@
         .row .name {
             font-size: 18px;
             color: #333;
-            margin-right: 10px;
-            /* flex: 2; */
+            margin-left: 10px;
+            flex: 2;
         }
 
         .row .name .tag {
@@ -45,7 +46,42 @@
         .row .sub-total {
             font-size: 18px;
             color: firebrick;
+            flex: 1;
+        }
 
+        .row .price::before,
+        .row .sub-total::before,
+        .total .amount::before {
+            content: "¥";
+            font-size: 12px;
+        }
+
+        .row .spec {
+            color: #888;
+            font-size: 14px;
+            flex: 2;
+        }
+
+        .row .count {
+            color: #aaa;
+            flex: 1;
+        }
+
+        .total {
+            width: 1000px;
+            margin: 0 auto;
+            /* background-color: red; */
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            border-top: 1px solid #e4e4e4;
+        }
+
+        .total .amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: firebrick;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -54,7 +90,7 @@
     <!-- 实现页面布局 -->
     <div class="list">
 
-        <div class="row">
+        <!-- <div class="row">
             <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
             <p class="name">
                 称心如意手摇咖啡磨豆机咖啡豆研磨机
@@ -64,10 +100,14 @@
             <p class="price">289.90</p>
             <p class="count">x2</p>
             <p class="sub-total">579.80</p>
-        </div>
+        </div> -->
 
-        <div class="total">
-            <div>合计: <span class="amount">1675.20</span></div>
+
+        <!-- -->
+    </div>
+    <div class="total">
+        <div>合计:
+            <span class="amount">0</span>
         </div>
     </div>
 </body>
@@ -112,4 +152,46 @@
             gift: "500g茶叶,清洗球"
         },
     ]
+
+    // 2. 动态渲染数据
+    const list = document.querySelector(".list")
+    const result = goodsList.map(item => {
+        const { picUrl, name, spec, price, count, gift } = item
+
+        // 3. 处理规格
+        const text = Object.values(spec).join("/")
+
+        // 4. 赠品处理
+        const str = gift ? gift.split(",").map(item => `<span class="tag">【赠品】${item}</span>`).join("") : ""
+
+        // 5. 单个商品总价 单价 + 数量 = 总价
+        const subTotal = (price * 100 * count) / 100
+
+
+
+        return `
+            <div class="row">
+            <img src="${picUrl}" alt="">
+            <p class="name">
+                ${name}
+                ${str}
+            </p>
+            <p class="spec">${text}</p>
+            <p class="price">${price.toFixed(2)}</p>
+            <p class="count">x${count}</p>
+            <p class="sub-total">${subTotal.toFixed(2)}</p>
+        </div>
+
+        `
+    })
+    list.innerHTML = result.join("")
+
+    // 6. 计算所有商品的总价
+    const total = goodsList.reduce((old, current) => old + (current.price * 100 * current.count) / 100, 0)
+    console.log(total)
+
+    document.querySelector(".amount").innerHTML = total.toFixed(2)
+
+
+
 </script>
