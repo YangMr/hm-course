@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="ipt" type="text" />
+    <button class="btn">发送</button>
+</body>
+
+</html>
+<script>
+    // 字符串trim方法: 可以去除字符串两侧的空格
+
+    // String 的 trim() 方法会从字符串的两端移除空白字符，并返回一个新的字符串，而不会修改原始字符串。
+    const btn = document.querySelector('.btn');
+    const ipt = document.querySelector(".ipt")
+    btn.addEventListener('click', function () {
+        // if (ipt.value === "") {
+        //     alert("输入内容不能为空")
+        // }
+
+        // if (ipt.value.trim() === "") {
+        //     alert("输入内容不能为空")
+        // }
+
+        if (!ipt.value.trim()) {
+            alert("输入内容不能为空")
+        }
+    });
+
+
+
+</script>

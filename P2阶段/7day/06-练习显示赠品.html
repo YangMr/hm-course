@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="name">
+        <!-- <span class="tag">[赠品]50g茶叶</span>
+        <span class="tag">[赠品]清洗球</span> -->
+    </div>
+</body>
+
+</html>
+<script>
+
+    const dom = document.querySelector(".name")
+
+    const gift = "50g茶叶,清洗球"
+
+    // console.log(gift.split(","))
+    dom.innerHTML = gift.split(",").map(item => `<span class="tag">[赠品]${item}<span>`).join("")
+
+
+</script>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .list {
+            width: 1000px;
+            margin: 100px auto;
+        }
+
+        .row {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e4e4e4;
+        }
+
+        .row img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .row .name {
+            font-size: 18px;
+            color: #333;
+            margin-right: 10px;
+            /* flex: 2; */
+        }
+
+        .row .name .tag {
+            display: block;
+            padding: 2px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .row .price,
+        .row .sub-total {
+            font-size: 18px;
+            color: firebrick;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 实现页面布局 -->
+    <div class="list">
+
+        <div class="row">
+            <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="">
+            <p class="name">
+                称心如意手摇咖啡磨豆机咖啡豆研磨机
+                <span class="tag">【赠品】10优惠券</span>
+            </p>
+            <p class="spec">白色</p>
+            <p class="price">289.90</p>
+            <p class="count">x2</p>
+            <p class="sub-total">579.80</p>
+        </div>
+
+        <div class="total">
+            <div>合计: <span class="amount">1675.20</span></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    // 1. 模拟后台返回的数据
+    const goodsList = [
+        {
+            id: 1,
+            picUrl: "https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg",
+            name: "称心如意手摇咖啡磨豆机咖啡豆研磨机",
+            spec: { color: "白色" },
+            price: 289.9,
+            count: 2
+        },
+        {
+            id: 2,
+            picUrl: "https://yanxuan-item.nosdn.127.net/2d942d6bc94f1e230763e1a5a3b379e1.png",
+            name: "竹制干泡茶盘正方形沥水茶台品茶盘",
+            spec: { size: '40cm*40cm', color: "黑色" },
+            price: 109.8,
+            count: 3
+        },
+        {
+            id: 3,
+            picUrl: "https://yanxuan-item.nosdn.127.net/44e51622800e4fceb6bee8e616da85fd.png",
+            name: "古法温酒汝瓷酒具套装白酒杯莲花温酒器",
+            spec: { color: "青色", sum: '一大四小', },
+            price: 488,
+            count: 1,
+            gift: "500g茶叶,羽毛球"
+        },
+        {
+            id: 4,
+            picUrl: "https://yanxuan-item.nosdn.127.net/4356c9fc150753775fe56b465314f1eb.png",
+            name: "大师监制龙泉青瓷茶叶罐",
+            spec: { size: '小号', color: "紫色" },
+            price: 139,
+            count: 2,
+            gift: "500g茶叶,清洗球"
+        },
+    ]
+</script>
