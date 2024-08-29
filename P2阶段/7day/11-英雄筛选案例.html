@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1170px;
+            height: 400px;
+            margin: 100px auto;
+            border: 1px solid #337ab7;
+            border-radius: 5px;
+
+        }
+
+        .heading {
+            background-color: #337ab7;
+            color: #fff;
+            height: 50px;
+            border: 1px solid #337ab7;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+
+        .row {
+            display: flex;
+            padding: 20px;
+        }
+
+        .col {
+            margin-right: 20px;
+        }
+
+        .form-control {
+            width: 200px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            padding-left: 8px;
+        }
+
+        button {
+            width: 100px;
+            height: 40px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            outline: none;
+            margin-left: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        table {
+            width: 100%;
+            border: 1px solid #cfcfcf;
+            text-align: center;
+            border-spacing: 0;
+            border-collapse: collapse;
+
+        }
+
+        table th {
+            border: 1px solid #cfcfcf;
+            height: 35px;
+            font-size: 14px;
+        }
+
+        table td {
+            border: 1px solid #cfcfcf;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">英雄列表管理</div>
+        <div class="body">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control username" type="text" placeholder="输入英雄名称" />
+                </div>
+                <div class="col">
+                    <select class="form-control gender" id="gender">
+                        <option value="">--选择性别--</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input class="form-control age" type="text" placeholder="输入年龄" />
+                </div>
+                <div class="col">
+                    <button type="button" class="search">查询</button>
+                    <button type="button" class="reset">重置</button>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>英雄名称</th>
+                        <th>英雄性别</th>
+                        <th>年龄</th>
+                        <th>操作区</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- <tr>
+                    <td>1</td>
+                    <td>大乔</td>
+                    <td>男</td>
+                    <td>18</td>
+                    <td>
+                        <button>删除</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>大乔</td>
+                    <td>男</td>
+                    <td>18</td>
+                    <td>
+                        <button>删除</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>大乔</td>
+                    <td>男</td>
+                    <td>18</td>
+                    <td>
+                        <button>删除</button>
+                    </td>
+                </tr> -->
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    const list = [
+        { id: 1, name: "大乔", gender: "男", age: 180 },
+        { id: 2, name: "小乔", gender: "女", age: 20 },
+        { id: 3, name: "鲁班", gender: "男", age: 48 },
+        { id: 4, name: "后羿", gender: "女", age: 28 },
+    ]
+
+    const tBody = document.querySelector("tbody")
+
+
+    // 1. 渲染数据
+    function render(data) {
+        const result = data.map((item, index) => {
+            const { id, name, gender, age } = item
+            return `
+                <tr>
+                    <td>${id}</td>
+                    <td>${name}</td>
+                    <td>${gender}</td>
+                    <td>${age}</td>
+                    <td>
+                        <button data-index="${index}">删除</button>
+                    </td>
+                </tr>
+            `
+        }).join("")
+
+        tBody.innerHTML = result
+    }
+    render(list)
+
+
+    // 2. 点击查询
+    const searchBtn = document.querySelector(".search")
+    const resetBtn = document.querySelector(".reset")
+    const username = document.querySelector(".username")
+    const gender = document.querySelector(".gender")
+    const age = document.querySelector(".age")
+    searchBtn.addEventListener("click", function () {
+        // 获取输入的英雄姓名
+        const newUserName = username.value.trim()
+        // 获取性别
+        const newGender = gender.value.trim()
+        // 获取年龄
+        const newAge = age.value.trim()
+
+        // 查询搜索的数据
+        const newList = list.filter((item, index) => {
+            // console.log(item)
+            const { name, gender, age } = item
+            const n = newUserName === "" || newUserName === name
+            const g = newGender === "" || newGender === gender
+            const a = newAge === "" || parseFloat(newAge) === age
+
+            return n && g && a
+        })
+
+        // console.log(newList)
+        render(newList)
+
+    })
+
+    // 重置功能
+    resetBtn.addEventListener("click", () => {
+        username.value = ""
+        gender.value = ""
+        age.value = ""
+        render(list)
+    })
+
+    // 删除功能
+    tBody.addEventListener("click", (e) => {
+
+        if (e.target.nodeName === "BUTTON") {
+            // if (!confirm("您确定删除吗?")) return
+            // const { index } = e.target.dataset
+            // list.splice(index, 1)
+            // render(list)
+            if (confirm("您确定删除吗?")) {
+                const { index } = e.target.dataset
+                list.splice(index, 1)
+                render(list)
+            }
+        }
+    })
+
+    // return 三个特点 给函数设置返回值  阻止元素默认行为  阻止程序继续往下执行
+</script>
