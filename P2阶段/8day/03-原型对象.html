@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    function Person(name, age) {
+        this.name = name
+        this.age = age
+        // this.say = function () {
+        //     console.log("123")
+        // }
+    }
+
+    Person.prototype.say = function () {
+        console.log("hello")
+    }
+
+    const zs = new Person("张三", 18)
+    const ls = new Person("李四", 28)
+
+    // zs.say()
+
+    console.log(zs.say === ls.say)
+
+
+</script>

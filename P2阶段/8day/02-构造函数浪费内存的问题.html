@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 属性 方法
+    function Person(name, age) {
+        this.name = name
+        this.age = age
+        this.say = function () {
+            console.log("hello")
+        }
+    }
+
+
+
+    const p = new Person("rose", 20)
+    const j = new Person("jack", 20)
+
+    console.log(p)
+    console.log(j)
+
+    console.log(p.age === j.age)
+
+    console.log(p.say === j.say)
+</script>
