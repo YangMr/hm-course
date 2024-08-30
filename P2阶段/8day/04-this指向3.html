@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 构造函数 this 指向的是谁? 
+    function Person(name) {
+        this.name = name
+        console.log(this)
+    }
+
+    // this 指向的实例化对象
+    Person.prototype.say = function () {
+        console.log(this, "aaa")
+    }
+
+    const p = new Person("jack")
+    p.say()
+
+
+    // 箭头函数能不能用作构造函数
+
+</script>

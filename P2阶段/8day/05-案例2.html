@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // Array.prototype.sort 
+
+    // Array.prototype.push
+
+    // Array.prototype.pop
+
+
+    // 需求：给数组扩展 求最大值方法 和 求和方法
+
+    const arr = [8, 2, 3]
+
+    Array.prototype.max = function () {
+        return Math.max(...this)
+    }
+
+    Array.prototype.min = function () {
+        return Math.min(...this)
+    }
+
+    console.log(arr.max())
+    console.log(arr.min())
+
+</script>
