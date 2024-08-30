@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // 男人 : 2岁了  可以吃饭   上班
+    // 女人 : 2岁了  可以吃饭   洗衣服
+
+    // function Man() {
+    //     this.age = 2
+    //     this.eat = function () {
+    //         console.log("吃饭")
+    //     }
+    // }
+
+    // function Woman() {
+    //     this.age = 2
+    //     this.eat = function () {
+    //         console.log("吃饭")
+    //     }
+    // }
+
+    // 人
+    // const person = {
+    //     age: 2,
+    //     eat() {
+    //         console.log("吃饭")
+    //     }
+    // }
+
+    // // 继承
+
+    // function Man() {
+
+    // }
+    // Man.prototype = person
+
+    // const m = new Man()
+
+    // console.log(m.age)
+    // m.eat()
+
+    // Man.prototype.work = function () {
+    //     console.log("上班")
+    // }
+
+    // m.work()
+
+    // function Woman() {
+
+    // }
+    // Woman.prototype = person
+
+    // const w = new Woman()
+
+    // console.log(w.age)
+    // w.eat()
+
+    // w.work()
+
+    // age eat 提取到字面量中了
+
+    function Person() {
+        this.age = 2
+        // this.eat = function () {
+        //     console.log("eat food")
+        // }
+    }
+    Person.prototype.eat = function () {
+        console.log("eat food")
+    }
+
+
+
+    function Man() {
+
+    }
+
+    Man.prototype = new Person()
+
+    const m = new Man()
+
+    console.log(m.age)
+    m.eat()
+
+    Man.prototype.work = function () {
+        console.log("work")
+    }
+    Man.prototype.constructor = Man
+    console.log(m)
+    m.work()
+
+
+    function Woman() {
+
+    }
+
+    Woman.prototype = new Person()
+
+    const w = new Woman()
+    console.log(w.age)
+    w.eat()
+    // w.work()
+
+
+
+
+    function Parent() {
+        this.name = "parent"
+    }
+
+
+    function Child() {
+
+    }
+
+    Child.prototype = new Parent()
+    Child.prototype.constructor = Child
+
+    const c = new Child()
+
+    console.log(c.name)
+
+
+
+
+</script>

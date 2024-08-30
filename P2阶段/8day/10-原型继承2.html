@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // 男人 : 2岁了  可以吃饭   上班
+    // 女人 : 2岁了  可以吃饭   洗衣服
+
+    // function Man() {
+    //     this.age = 2
+    //     this.eat = function () {
+    //         console.log("吃饭")
+    //     }
+    // }
+
+    // function Woman() {
+    //     this.age = 2
+    //     this.eat = function () {
+    //         console.log("吃饭")
+    //     }
+    // }
+
+    // 人
+    const person = {
+        age: 2,
+        eat() {
+            console.log("吃饭")
+        }
+    }
+
+    // 继承
+
+    function Man() {
+
+    }
+    Man.prototype = person
+
+    const m = new Man()
+
+    console.log(m.age)
+    m.eat()
+
+
+    function Woman() {
+
+    }
+    Woman.prototype = person
+
+    const w = new Woman()
+
+    console.log(w.age)
+    w.eat()
+</script>

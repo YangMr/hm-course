@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    function One() {
+
+    }
+
+    One.prototype = new Two()
+
+    function Two() {
+
+    }
+
+    // __proto__ =  
+    Two.prototype = new Three()
+    // Two.prototype.name = "rose"
+
+    function Three() {
+
+    }
+    Three.prototype.name = "jack"
+    Three.prototype.sayName = function () {
+        console.log(this.name)
+    }
+
+    const o = new One()
+    const t = new Two()
+
+    console.log(o.name)
+
+</script>
