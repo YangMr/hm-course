@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="time"></div>
+</body>
+
+</html>
+<script>
+
+    const t = document.querySelector('.time')
+    // console.log(new Date().toLocaleString());
+
+    // t.innerHTML = new Date().toLocaleString()
+
+    function getTime() {
+        const time = new Date().toLocaleString()
+        t.innerHTML = time
+
+        setTimeout(getTime, 1000) //每秒执行一次
+    }
+    getTime()
+
+
+    // 将数据tree结构化
+
+    // 将tree转化为一维数据
+</script>

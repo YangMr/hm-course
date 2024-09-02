@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script>
+
+
+    // 深拷贝 json序列化 lodash
+    const obj = {
+        name: "jack",
+        age: 100,
+        family: {
+            mother: "jane",
+            father: "tom"
+        }
+    }
+
+    const newObj = _.cloneDeep(obj)
+
+    newObj.name = "tom"
+    newObj.age = 20
+    newObj.family.mother = "aaa"
+    newObj.family.father = "ccc"
+
+    console.log("old", obj)
+    console.log("new", newObj)
+
+
+    const arr = ["jack", "rose", ["aa", "cc"]]
+
+    const newArr = _.cloneDeep(arr)
+    newArr[0] = "666"
+    newArr[2][0] = "tom"
+    newArr[2][1] = "bb"
+
+    console.log("old", arr)
+    console.log("new", newArr)
+
+
+</script>

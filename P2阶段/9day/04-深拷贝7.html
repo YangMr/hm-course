@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    const obj = {
+        name: "jack",
+        age: 100,
+        family: {
+            parents: "aaa",
+            children: "bb"
+        }
+    }
+
+    const arr = ["jack", "rose", ["a", "b"]]
+
+    function cloneDeep(obj) {
+        const newObj = Array.isArray(obj) ? [] : {}
+
+        // 遍历原对象,将原对象的属性与值放到新对象里面
+        for (let key in obj) {
+
+            if (typeof obj[key] === "object") {
+                newObj[key] = cloneDeep(obj[key]) // 递归��贝
+            } else {
+                newObj[key] = obj[key]
+            }
+
+        }
+
+        return newObj
+    }
+
+    // console.log(cloneDeep(obj))
+    const newObj = cloneDeep(obj)
+
+    newObj.name = "110"
+    newObj.family.parents = "hello"
+
+    console.log("old", obj)
+    console.log("newObj", newObj)
+
+</script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // const obj = {
+    //     name: "tom",
+    //     age: 18,
+    //     family: {
+    //         mother: "jane",
+    //         father: "jack"
+    //     },
+    //     say() {
+    //         console.log("123")
+    //     },
+    // }
+
+    // // 1. JSON序列化 深拷贝
+    // const newObj = JSON.parse(JSON.stringify(obj))
+    // newObj.name = "tom"
+    // newObj.age = 20
+    // newObj.family.mother = "aaa"
+    // newObj.family.father = "ccc"
+
+
+    // console.log("oldObj", obj)
+    // console.log("newObj", newObj)
+
+
+    const arr = ["name", undefined, null, function () { }, "age", "family", "father", ["mother1", "father1"], {
+        test: [
+            {
+                name: "test",
+                t: [
+                    {
+                        age: 100,
+                        test: [
+                            {
+                                name: "test",
+                                t: [
+                                    {
+                                        age: 100
+                                    }
+                                ],
+                                test: [
+                                    {
+                                        name: "test",
+                                        t: [
+                                            {
+                                                age: 100,
+                                                test: [
+                                                    {
+                                                        name: "test",
+                                                        t: [
+                                                            {
+                                                                age: 100
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }]
+
+    const newArr = JSON.parse(JSON.stringify(arr))
+
+    newArr[0] = "123"
+    newArr[4][1] = "666"
+
+    console.log("oldarr", arr)
+    console.log("newarr", newArr)
+</script>

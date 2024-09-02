@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    const obj = {
+        name: "jack",
+        age: 100,
+        family: {
+            parents: "aaa",
+            children: "bb"
+        }
+    }
+
+    const arr = ["jack", "rose", ["a", "b"]]
+    // 检测数据类型并不完善 ---  
+    // Object.prototype.toString.call()
+    function cloneDeep(obj) {
+        if (typeof obj != "object" && obj === null) {
+            return obj
+        }
+
+        let newObj = null
+        if (Array.isArray(obj)) {
+            newObj = []
+            for (let i = 0; i < obj.length; i++) {
+                if (typeof obj[i] === "object") {
+                    newObj[i] = cloneDeep(obj[i])
+                } else {
+                    newObj.push(obj[i])
+                }
+            }
+        } else {
+            // 遍历原对象,将原对象的属性与值放到新对象里面
+            newObj = {}
+            for (let key in obj) {
+                if (typeof obj[key] === "object") {
+                    newObj[key] = cloneDeep(obj[key])
+                } else {
+                    newObj[key] = obj[key]
+                }
+
+            }
+        }
+        return newObj
+    }
+
+    // console.log(cloneDeep(obj))
+    const newObj = cloneDeep(obj)
+
+    newObj.name = "110"
+    newObj.family.parents = "hello"
+
+    console.log("old", obj)
+    console.log("newObj", newObj)
+
+    const newArr = cloneDeep(arr)
+
+    newArr[0] = "666"
+    newArr[2][0] = "tom"
+    newArr[2][1] = "bb"
+
+    console.log("old", arr)
+    console.log("newObj", newArr)
+
+
+</script>

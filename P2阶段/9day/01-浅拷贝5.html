@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // 概念: 浅拷贝, 将原来的数据拷贝一份, 修改拷贝的数据原数据也会跟着改变, 我们称之为浅拷贝
+
+    // const obj = {
+    //     name: "jack",
+    //     age: 100
+    // }
+
+    // 刚才的对象只有一层
+    const obj = {
+        name: "jack",
+        age: 100,
+        family: {
+            mother: "jane",
+            father: "tom"
+        }
+    }
+
+
+    // const newObj = obj
+
+    // // 浅拷贝
+    // newObj.name = "rose"
+    // newObj.age = 10
+
+
+    // console.log("old", obj)
+    // console.log("new", newObj)
+
+    // 1. Object.assign 对象拷贝 深拷贝? 浅拷贝?
+    // const newObj = {}
+
+    // Object.assign(newObj, obj)
+
+
+    // console.log("newObj", newObj)
+    // newObj.name = "rose"
+    // newObj.age = 10
+    // newObj.family.mother = "aaaa"
+    // newObj.family.father = "cccc"
+
+    // console.log("old", obj)
+    // console.log("new", newObj)
+
+
+    // 结论: 如果对象只有一层, 使用Object.assign可以实现深拷贝, 如果对象有多层,  使用Object.assign实现的则是一个浅拷贝
+
+    // 2. ...扩展运算符拷贝 如果对象只有一层,可以实现深拷贝  如果对象有多层 实现的则是一个浅拷贝
+    const newObj = { ...obj }
+
+    // console.log("newObj", newObj)
+    // newObj.name = "rose"
+    // newObj.age = 10
+    // newObj.family.mother = "aaaa"
+    // newObj.family.father = "cccc"
+    // console.log("old", obj)
+    // console.log("new", newObj)
+
+
+    // 直接赋值操作, 复制的地址 , 修改新数据, 源数据也会改变 , 浅拷贝
+
+    const arr = ["张三", "李四", "王五", ["jack", "rose"]]
+
+    // const newArr = arr
+
+    // newArr[1] = "aaaa"
+
+    // console.log("oldArr", arr)
+    // console.log("newArr", newArr)
+
+
+    // 如果数组只有一层, 使用concat实现的是深拷贝, 如果有多层, 使用concat实现的浅拷贝
+    const newArr = arr.concat()
+
+    newArr[1] = "aaaa"
+    newArr[3][0] = "ccc"
+
+    console.log("oldArr", arr)
+    console.log("newArr", newArr)
+
+
+</script>
