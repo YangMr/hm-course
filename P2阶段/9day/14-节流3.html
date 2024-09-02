@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">抢购</button>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script>
+
+    const btn = document.querySelector("#btn")
+    // btn.onclick = _.throttle(test, 1000)
+    function test() {
+        console.log(123)
+    }
+
+    btn.addEventListener("click", throttle(test, 1000))
+
+
+    // 频繁操作的情况下, 只执行一次
+    function throttle(callback, delay) {
+        let timer = null
+        return function () {
+            if (!timer) {
+                timer = setTimeout(() => {
+                    callback()
+                    timer = null
+                }, delay)
+            }
+        }
+    }
+
+
+    // 节流方法 
+    // function throttle(callback, delay) {
+    //     let lastTime = 0
+    //     return function () {
+    //         const nowTime = new Date().getTime()
+    //         if (nowTime - lastTime > delay) {
+    //             callback()
+    //             lastTime = nowTime
+    //         }
+    //     }
+    // }
+
+
+</script>

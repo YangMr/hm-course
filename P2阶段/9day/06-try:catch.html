@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="loading">loading</div>
+    <div>按钮</div>
+</body>
+
+</html>
+<script>
+    // const p = document.querySelector(".p")
+    // p.style.color = "red"
+
+    // 真生发生错误的时候
+    // alert("发生错误")
+
+
+    // 代码 同步的操作 , 如果同步代码发生错误, 会阻塞后面代码的执行
+    // try catch 捕获对应的错误, 不会阻止程序的执行
+    // 同步代码执行的错误啊
+    const loading = document.querySelector('.loading');
+    try {
+
+        loading.style.color = "yellow"
+        const p = document.querySelector(".p")
+        p.style.color = "red"
+
+
+    } catch (error) {
+        alert("123")
+        console.error("error=", error)
+    } finally {
+        loading.style.color = "black"
+    }
+
+
+    function render() {
+        console.log("渲染")
+    }
+    render()
+
+</script>

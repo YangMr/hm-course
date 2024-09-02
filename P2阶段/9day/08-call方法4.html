@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // const obj = {
+    //     name: "jack",
+    //     age: 100
+    // }
+
+    // function init(val1, val2) {
+    //     console.log(this) // window
+
+    //     console.log(this.name)
+    //     console.log(this.age)
+
+    //     console.log(val1)
+    //     console.log(val2)
+
+    //     return "aaaa"
+    // }
+
+    // // init() 第一个参数是设置this的指向
+    // console.log(init.call(obj, "张三", "李四"))
+
+
+    // 检测变量的数据类型(重要重要重要重要非常重要) Object.prototype.toString.call()
+    // typeof  基本数据类型  引用数据类型 object
+    // instanceof  有缺陷
+    // constructor 有缺陷
+    // Object.prototype.toString.call()
+    // console.log(typeof 1) // number
+    // console.log(typeof "aa") // string
+    // console.log(typeof null) // object
+    // console.log(typeof undefined) // undefined
+    // console.log(typeof true) // boolean
+    // console.log(typeof [1, 2, 3])
+    // console.log(typeof { name: "jack" })
+
+
+    console.log(Object.prototype.toString.call(1))
+    console.log(Object.prototype.toString.call("aa"))
+    console.log(Object.prototype.toString.call(null))
+    console.log(Object.prototype.toString.call(undefined))
+    console.log(Object.prototype.toString.call(true))
+    console.log(Object.prototype.toString.call([1, 2, 3]))
+    console.log(Object.prototype.toString.call({ name: "jack" }) === "[object Object]")
+    console.log(Object.prototype.toString.call(function () { }))
+    console.log(Object.prototype.toString.call(new Date()))
+
+</script>

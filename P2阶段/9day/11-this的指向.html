@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="code">发送验证码</button>
+</body>
+
+</html>
+<script>
+
+    // 1.1 全局内调用
+    function fn() {
+        console.log(this)
+    }
+    fn()
+
+    // 1.2 对象内调用
+    const obj = {
+        name: '佩奇',
+        sayHi() {
+            console.log(this) // obj
+        }
+    }
+    obj.sayHi()
+
+    // 1.3 构造函数内this
+    function Person() {
+        this.name = name
+        console.log(this)
+    }
+    const zs = new Person()
+
+    // 1.4 事件处理函数中的this
+    document.querySelector('button').addEventListener('click', function () {
+        console.log(this)
+    })
+
+    // 1.5 特殊调用 call  apply  bind 可以改变this指向
+    const o = { name: '佩奇' }
+    function fun() {
+        console.log(this)
+    }
+    fun.call(o)
+
+    // 2. 箭头函数 没有this，是沿用上一级作用域的this 
+
+</script>

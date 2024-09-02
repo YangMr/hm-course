@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="code">发送验证码</button>
+</body>
+
+</html>
+<script>
+    // 闭包 : 函数嵌套函数  this === window
+
+    const btn1 = document.querySelector(".code")
+    let flag = true  // 开关变量，用来防止多次点击
+    // 绑定点击时间
+    btn1.addEventListener("click", function () {
+        console.log(this)
+        if (flag) {
+            let i = 60
+            this.innerHTML = i + "秒后重新获取内容"
+
+            const timer = setInterval(function () {
+                console.log(this)
+
+                i--
+                this.innerHTML = i + "秒后重新获取内容"
+
+
+                if (i === 0) {
+                    this.innerHTML = "重新获取"
+                    i = 5
+                    clearInterval(timer)
+                    flag = true
+                }
+            }.bind(this), 1000)
+        }
+        flag = false
+
+    })
+
+
+
+</script>
