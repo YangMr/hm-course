@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .container {
+            margin: 20px auto;
+        }
+
+        .search-btn {
+            margin-left: 18px;
+        }
+
+        .title {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>省份/直辖市名字</label>
+                    <input type="text" value="北京" class="form-control p" placeholder="请输入省份名称">
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>城市名字</label>
+                    <input type="text" value="北京市" class="form-control c" placeholder="请输入城市名称">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary search-btn">查询</button>
+        </div>
+
+        <div class="title">地区列表:</div>
+
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <!-- <tr>
+                    <td>中原区</td>
+                </tr>
+                <tr>
+                    <td>中原区</td>
+                </tr>
+                <tr>
+                    <td>中原区</td>
+                </tr>
+                <tr>
+                    <td>中原区</td>
+                </tr> -->
+            </tbody>
+
+        </table>
+    </div>
+</body>
+
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+    const p = document.querySelector(".p")
+    const c = document.querySelector(".c")
+    const searchBtn = document.querySelector(".search-btn")
+    const tbody = document.querySelector("tbody")
+
+    searchBtn.addEventListener("click", function () {
+        const pname = p.value
+        const cname = c.value
+        axios({
+            url: "https://hmajax.itheima.net/api/area",
+            params: {
+                // 省份名称
+                pname,
+                // 城市名称
+                cname
+
+            }
+        }).then(res => {
+            console.log(res)
+
+            // const list = res.data.list
+            const { list } = res.data
+
+            const htmlStr = list.map(item => {
+                return `<tr>
+                            <td>${item}</td>
+                        </tr>`
+            })
+
+            tbody.innerHTML = htmlStr.join("")
+        })
+    })
+</script>

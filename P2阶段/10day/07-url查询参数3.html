@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .news {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .new-list {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="ipt" type="text" placeholder="请输入省份" />
+    <button id="btn">获取对应省份所有城市的数据</button>
+
+    <div class="box"></div>
+</body>
+
+</html>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+<!-- 导入axios -->
+<script src="js/axios.min.js"></script>
+<script>
+
+    const btn = document.querySelector("#btn")
+    const ipt = document.querySelector(".ipt")
+    const box = document.querySelector(".box")
+
+    // 数据能够准确 -> 我们希望后端给我指定的数据
+
+    btn.addEventListener("click", function () {
+        axios({
+            // https://hmajax.itheima.net/api/city?pname=河南省
+            url: "https://hmajax.itheima.net/api/city",
+            params: {
+                pname: ipt.value
+            }
+        }).then(response => {
+            console.log(response.data.list)
+            const list = response.data.list
+            const htmlStr = list.map(item => {
+                return `<div>${item}</div>`
+            })
+            box.innerHTML = htmlStr.join("")
+        })
+    })
+
+</script>

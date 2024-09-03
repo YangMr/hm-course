@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .news {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .new-list {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">获取新闻的数据</button>
+
+    <div class="news">
+        <!-- <div class="new-list">
+            <img src="http://ajax-api.itheima.net/images/0.webp" alt="">
+            <p>5G渗透率持续提升，创新业务快速成长</p>
+            <div>
+                <div>来源:新京报经济新闻</div>
+                <div>时间:2222-10-28 11:50:28</div>
+            </div>
+        </div> -->
+    </div>
+</body>
+
+</html>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+<!-- 导入axios -->
+<script src="js/axios.min.js"></script>
+<script>
+    // 1. 获取按钮
+    const btn = document.querySelector("#btn")
+    const news = document.querySelector(".news")
+
+    // 2. 绑定事件
+    // btn.addEventListener("click", function () {
+
+    // 3. 使用axios发送请求 // 4. 接收返回的数据
+    axios({
+        url: "http://hmajax.itheima.net/api/news"
+    }).then(response => {
+
+        const newsArr = response.data.data
+
+        const htmlStr = newsArr.map(item => {
+            const { title, source, img, time } = item
+            return `
+                    <div class="new-list">
+                        <img src="${img}" alt="">
+                        <p>${title}</p>
+                        <div>
+                            <div>来源:${source}</div>
+                            <div>时间:${time}</div>
+                        </div>
+                    </div>
+                `
+        })
+
+        news.innerHTML = htmlStr.join("")
+        // })
+
+
+
+    })
+</script>

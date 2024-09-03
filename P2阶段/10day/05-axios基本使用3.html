@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul {
+            width: 500px;
+            margin: 100px auto;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">获取省份的数据</button>
+    <ul>
+        <!-- <li>北京市</li>
+        <li>北京市</li>
+        <li>北京市</li> -->
+    </ul>
+</body>
+
+</html>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+<!-- 导入axios -->
+<script src="js/axios.min.js"></script>
+<script>
+    /**
+     * 1. 创建一个按钮
+    * 2. 点击按钮, 触发点击事件
+    * 3. 使用axios请求后端接口数据
+    * 4. 获取后端返回的数据
+    * 5. 渲染后端返回的数据
+     * **/
+
+    // axios({
+    //     url: "https://hmajax.itheima.net/api/province"
+    // }).then(response => {
+    //     console.log(response.data.list)
+    // })
+
+
+    const btn = document.querySelector("#btn")
+    const ul = document.querySelector("ul")
+    btn.addEventListener("click", function () {
+        axios({
+            url: "https://hmajax.itheima.net/api/province"
+        }).then(response => {
+            // console.log(response.data.list)
+            const list = response.data.list
+
+            const htmlStr = list.map(item => {
+                return `<li>${item}</li>`
+            })
+            ul.innerHTML = htmlStr.join("")
+        })
+    })
+</script>
