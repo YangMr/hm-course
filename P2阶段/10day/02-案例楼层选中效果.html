@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .one {
+            background-color: pink;
+            height: 1000px;
+        }
+
+        .two {
+            background-color: green;
+            height: 600px;
+        }
+
+        .three {
+            background-color: purple;
+            height: 800px;
+        }
+
+        .four {
+            background-color: #ccc;
+            height: 1000px;
+        }
+
+        .elevator {
+            position: fixed;
+            right: 20px;
+            top: 280px;
+            width: 60px;
+            border: 1px solid #e4e4e4;
+        }
+
+        .elevator a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            /* font-size: 14px; */
+            text-align: center;
+            color: #999;
+        }
+
+        .elevator a.active {
+            color: #1286ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="one big">区域一</div>
+        <div class="two big">区域二</div>
+        <div class="three big">区域三</div>
+        <div class="four big">区域四</div>
+    </div>
+    <div class="elevator">
+        <a href="javascript:;">区域一</a>
+        <a href="javascript:;">区域二</a>
+        <a href="javascript:;">区域三</a>
+        <a href="javascript:;">区域四</a>
+    </div>
+</body>
+
+</html>
+<script src="js/lodash.min.js"></script>
+<script>
+    // 获取所有的区域元素
+    const bigs = document.querySelectorAll(".big")
+    // 获取楼层元素
+    const smalls = document.querySelectorAll(".elevator a")
+    function scroll() {
+        // 获取滚动条滚动的具体
+        const n = document.documentElement.scrollTop
+        console.log(n)
+
+        // 遍历每个区域盒子
+        bigs.forEach((item, index) => {
+
+            // 判断当前滚动态条滚动的距离是否大与对应区域元素距离顶部的距离,如果大于
+            if (n >= item.offsetTop) {
+                // 获取之前选中的元素
+                const old = document.querySelector(".elevator .active")
+                // 移除class类型
+                old && old.classList.remove("active")
+                // 给当前选中的元素添加active类型
+                smalls[index].classList.add("active")
+            }
+        })
+    }
+    document.addEventListener("scroll", _.debounce(scroll, 200))
+
+</script>

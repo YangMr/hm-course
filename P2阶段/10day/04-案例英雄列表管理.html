@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .panel {
+            width: 900px;
+            margin: 10px auto;
+        }
+
+        .table,
+        .table th {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">英雄列表管理</div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" class="form-control name" placeholder="输入英雄名称">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control gender">
+                            <option value="">--选择性别--</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control age" placeholder="输入年龄">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-success" id="search">搜索</button>
+                        <button type="button" class="btn btn-warning" id="reset">重置</button>
+                        <button type="button" class="btn btn-primary">新增</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>英雄名称</th>
+                        <th>英雄性别</th>
+                        <th>年龄</th>
+                        <th>操作区</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                        <td>1</td>
+                        <td>大乔</td>
+                        <td>男</td>
+                        <td>18</td>
+                        <td><button type="button" class="btn btn-danger">删除</button></td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    const list = [
+        { id: 1, name: "大乔", gender: "男", age: 18 },
+        { id: 2, name: "小乔", gender: "女", age: 20 },
+        { id: 3, name: "鲁班", gender: "男", age: 48 },
+        { id: 4, name: "后羿", gender: "女", age: 28 },
+        { id: 8, name: "廉颇", gender: "男", age: 28 },
+    ]
+
+    const tbody = document.querySelector("tbody")
+    function render(list) {
+        const htmlStr = list.map((item, index) => {
+            return `
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.gender}</td>
+                    <td>${item.age}</td>
+                    <td><button data-index="${item.id}" type="button" class="btn btn-danger" id="delete">删除</button></td>
+                </tr>
+            `
+        })
+
+        tbody.innerHTML = htmlStr.join("")
+    }
+
+    render(list)
+
+
+    const name = document.querySelector(".name")
+    const gender = document.querySelector(".gender")
+    const age = document.querySelector(".age")
+    const search = document.querySelector("#search")
+
+    search.addEventListener("click", function () {
+        const n = name.value.trim()
+        const g = gender.value.trim()
+        const a = age.value.trim()
+
+        const newList = list.filter(item => {
+            const { name, gender, age } = item
+            console.log(g)
+            const n1 = n === "" || n === name
+            const g1 = g === "" || g === gender
+            const a1 = a === "" || parseFloat(a) === age
+            return n1 && g1 && a1
+        })
+
+        console.log(newList)
+
+        render(newList)
+
+    })
+
+
+    const reset = document.querySelector("#reset")
+    reset.addEventListener("click", function () {
+        name.value = ""
+        gender.value = ""
+        age.value = ""
+        render(list)
+
+    })
+
+
+    const del = document.querySelector("#delete")
+    tbody.addEventListener("click", function (e) {
+        // console.log(e)
+        if (e.target.nodeName === "BUTTON") {
+            const id = e.target.dataset.index
+
+            const index = list.findIndex(item => item.id == id)
+
+            list.splice(index, 1)
+
+            render(list)
+        }
+    })
+
+
+</script>

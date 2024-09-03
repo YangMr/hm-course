@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 1000px;
+            height: 500px;
+            margin: 100px auto;
+        }
+
+        .video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <video class="video" src="assets/1.mp4" controls></video>
+        <!-- <video src="https://v.itheima.net/LapADhV6.mp4"></video> -->
+    </div>
+</body>
+
+</html>
+<script src="js/lodash.min.js"></script>
+<script>
+    // 需求:记录播放位置
+
+    //1. 获取video元素
+    const video = document.querySelector('.video');
+
+    function setVideoPlayTime() {
+        // 3. 获取当前播放的时间进度
+        const currentTime = video.currentTime
+        console.log(currentTime)
+        // 4. 存储到本地
+        localStorage.setItem("time", currentTime)
+    }
+
+    // 2. 监听播放的进度
+    video.addEventListener("timeupdate", _.throttle(setVideoPlayTime, 1000))
+
+
+
+</script>

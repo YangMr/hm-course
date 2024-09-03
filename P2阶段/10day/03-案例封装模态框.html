@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal {
+            width: 300px;
+            min-height: 100px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .modal .modal-header {
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .modal .modal-header i {
+            position: absolute;
+            right: 15px;
+            top: -2px;
+            cursor: pointer;
+            font-style: normal;
+            color: #999;
+        }
+
+        .modal .modal-body {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn1">删除</button>
+    <button class="btn2">登录</button>
+    <button class="btn3">新增</button>
+    <button class="btn4">关闭</button>
+
+    <!-- <div class="modal">
+        <div class="modal-header">
+            友情的提示 <i>x</i>
+        </div>
+        <div class="modal-body">
+            您没有删除权限操作
+        </div>
+    </div> -->
+</body>
+
+</html>
+<script>
+    const btn1 = document.querySelector(".btn1")
+    const btn2 = document.querySelector(".btn2")
+    const btn3 = document.querySelector(".btn3")
+    const btn4 = document.querySelector(".btn4")
+
+    // 面向过程 : 拆分成一个步骤一个步骤, 按照顺序去执行
+
+    // 面向对象 : 拆分一个个具体的事务, 然后组合调用
+
+
+    // 弹窗框 : 打开 关闭
+
+    // 弹窗框类
+    function Modal(title, content) {
+        //1. 创建模态框
+        this.modalBox = document.createElement("div")
+        this.modalBox.className = "modal"
+
+        // 2. 插入头部于body dom
+        this.modalBox.innerHTML = `
+            <div class="modal-header">
+            ${title} <i>x</i>
+            </div>
+            <div class="modal-body">
+            ${content}
+            </div>
+        `
+    }
+
+    Modal.prototype.open = function () {
+        // 在插入模态框之前, 判断有没有渲染模态框,如果渲染过,则删除之前的模态框
+        const box = document.querySelector(".modal")
+        box && box.remove()
+
+
+        // 把模态框插入body , 这时候模态框过才能显示
+        document.body.appendChild(this.modalBox)
+
+        //  获取关闭标签
+        const i = document.querySelector(".modal-header i")
+        // 点击调用关闭弹窗的方法
+        i && i.addEventListener("click", () => {
+            this.close()
+        })
+    }
+
+    // 关闭弹窗方法
+    Modal.prototype.close = function () {
+        this.modalBox.remove()
+    }
+
+    let m = null
+
+    btn1.addEventListener("click", function () {
+        m = new Modal("温馨的提示", "您没有权限删除操作")
+        m.open()
+    })
+
+    btn2.addEventListener("click", function () {
+        m = new Modal("友情的提示", "您没有注册呢？")
+        m.open()
+    })
+
+    btn3.addEventListener("click", function () {
+        m = new Modal("强烈的提示", "您没有新增权限")
+        m.open()
+    })
+
+
+    btn4.addEventListener("click", function () {
+        m.close()
+    })
+
+</script>
