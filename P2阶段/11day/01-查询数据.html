@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn">查询图书列表</button>
+</body>
+
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    const btn = document.querySelector("#btn")
+    btn.addEventListener("click", function () {
+        axios({
+            url: "https://hmajax.itheima.net/api/books",
+            method: "GET",
+            // 千万务必记住, axios的get请求的参数务必写到params里面 
+            params: {
+                creator: "杨岭"
+            }
+        }).then(res => {
+            console.log(res)
+        })
+    })
+</script>

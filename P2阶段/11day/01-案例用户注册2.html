@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input class="username" type="text" placeholder="请输入用户名" />
+    </div>
+    <div>
+        <input class="password" type="password" placeholder="请输入密码" />
+    </div>
+    <button id="btn">用户注册</button>
+</body>
+
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    // 需求: 1. 点击按钮,调用注册接口,注册一个账号(用户)
+
+
+    const btn = document.querySelector("#btn")
+    const user = document.querySelector(".username")
+    const pass = document.querySelector(".password")
+    btn.addEventListener("click", function () {
+        const username = user.value.trim()
+        const password = pass.value.trim()
+        // 发送请求
+        axios({
+            // 请求的url地址
+            url: "https://hmajax.itheima.net/api/register",
+            // 请求的方法 get post put delete 
+            method: "POST",
+            // get params发送数据 post put delete 则是通过data发送数据
+            data: {
+                // username: username,
+                // password: password
+                username,
+                password
+            }
+        }).then(res => {
+            console.log(res)
+        })
+    })
+</script>
