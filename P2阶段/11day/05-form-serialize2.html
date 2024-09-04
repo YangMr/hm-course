@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="javascript:;" id="form">
+        <!-- form-serialize 插件 -->
+        <input class="account" type="text" name="user" placeholder="账号" />
+        <br />
+        <input class="password" type="password" name="pass" placeholder="密码" />
+        <br />
+        <input class="text" type="password" name="pass1" placeholder="密码" />
+        <br />
+        <input class="text" type="password" name="pass2" placeholder="密码" />
+        <br />
+
+
+        <!-- 20-30个表单项 -->
+        <button>登录</button>
+    </form>
+
+</body>
+
+</html>
+<script src="lib/form-serialize.js"></script>
+<script>
+
+    const button = document.querySelector('button');
+    const form = document.querySelector('#form');
+
+    button.addEventListener("click", function () {
+        const obj = serialize(form, { hash: true, empty: true })
+        console.log(obj)
+    })
+
+
+</script>

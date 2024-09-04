@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #3f3f3f;
+        }
+
+        .login-wrap {
+            width: 500px;
+            min-height: 300px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            padding: 20px;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            /* background-color: red; */
+        }
+
+        .form-group {
+            padding: 20px;
+        }
+
+        label {
+            width: 70px;
+            text-align: right;
+            display: inline-block;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            height: 35px;
+            width: 350px;
+            outline: none;
+            border-radius: 5px;
+            padding-left: 10px;
+            margin-left: 10px;
+        }
+
+        .button-group {
+            text-align: center;
+        }
+
+        .button {
+            background: plum;
+            color: #fff;
+            border-radius: 8px;
+            width: 80%;
+            height: 30px;
+            text-align: center;
+            margin-left: 50px;
+            border: none;
+            outline: none;
+        }
+
+        .account {
+            text-align: right;
+            color: #666;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .tips {
+            padding: 10px;
+            background: pink;
+            text-align: center;
+            color: red;
+            margin: 20px 0;
+            display: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-wrap">
+        <div class="title">登录</div>
+        <div class="tips"></div>
+
+        <form action="javascript:;" id="user-form">
+            <div class="form">
+                <div class="form-group">
+                    <label for="account">账号:</label>
+                    <input id="account" name="username" class="username" type="text" placeholder="请输入账号" />
+                </div>
+                <div class="form-group">
+                    <label for="pass">密码:</label>
+                    <input id="pass" name="password" class="password" type="text" placeholder="请输入账号" />
+                </div>
+                <div class="button-group">
+                    <button class="button">登录</button>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="account">注册账号</div>
+    </div>
+</body>
+
+</html>
+<script src="js/axios.min.js"></script>
+<script src="lib/form-serialize.js"></script>
+<script>
+    // 需求
+    // 1. 点击注册账号, 将登陆变为注册
+    // 2. 提示账号与密码不能为空
+
+    const baseUrl = "https://hmajax.itheima.net"
+
+    const account = document.querySelector(".account")
+    const title = document.querySelector(".title")
+    const button = document.querySelector(".button")
+    // const user = document.querySelector(".username")
+    // const pass = document.querySelector(".password")
+    const tips = document.querySelector(".tips")
+    const userForm = document.querySelector("#user-form")
+
+    // true登录 flase注册
+    let loginStatus = true
+    account.addEventListener("click", function () {
+        loginStatus = !loginStatus
+        title.innerHTML = loginStatus ? "登录" : "注册"
+        account.innerHTML = loginStatus ? "注册账号" : "账号登陆"
+        button.innerHTML = loginStatus ? "登录" : "注册"
+    })
+
+    button.addEventListener("click", function () {
+        // const username = user.value.trim()
+        // const password = pass.value.trim()
+        console.log("aqaa", serialize(userForm, { hash: true, empty: true }))
+        const { username, password } = serialize(userForm, { hash: true, empty: true })
+
+        if (!username) {
+            tips.style.display = "block"
+            // alert("账号不能为空")
+            tips.innerHTML = "账号不能为空"
+            setTimeout(function () {
+                tips.style.display = "none"
+            }, 1000)
+            return
+        }
+
+        if (username.length < 8) {
+            tips.style.display = "block"
+            // alert("账号不能为空")
+            tips.innerHTML = "账号不能少于8位"
+            setTimeout(function () {
+                tips.style.display = "none"
+            }, 1000)
+            return
+        }
+
+        if (!password) {
+            // alert("密码不能为空")
+            tips.style.display = "block"
+            tips.innerHTML = "密码不能为空"
+            setTimeout(function () {
+                tips.style.display = "none"
+            }, 1000)
+            return
+        }
+        if (password.length < 6) {
+            // alert("密码不能为空")
+            tips.style.display = "block"
+            tips.innerHTML = "密码不能少于6位"
+            setTimeout(function () {
+                tips.style.display = "none"
+            }, 1000)
+            return
+        }
+
+
+
+        tips.style.display = "none"
+
+
+        console.log(username)
+        console.log(password)
+
+        if (loginStatus) {
+            axios({
+                url: baseUrl + "/api/login",
+                method: "POST",
+                data: {
+                    username,
+                    password
+                }
+            }).then(res => {
+                console.log(res)
+                alert(res.data.message)
+            }).catch(error => {
+                console.log(error)
+                alert(error.response.data.message)
+            })
+        } else {
+            axios({
+                url: baseUrl + "/api/register",
+                method: "POST",
+                data: {
+                    username,
+                    password
+                }
+            }).then(res => {
+                console.log(res)
+                alert(res.data.message)
+            }).catch(error => {
+                console.log(error)
+                alert(error.response.data.message)
+            })
+        }
+    })
+
+</script>
