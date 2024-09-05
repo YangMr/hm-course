@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        .wrapper {
+            background-color: #fff;
+            margin: 0 auto;
+            width: 1000px;
+            padding: 20px;
+            display: flex;
+        }
+
+        .nav {
+            width: 200px;
+            border-right: 1px solid #f0f0f0;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        .nav li {
+            height: 45px;
+            line-height: 45px;
+            padding-left: 20px;
+        }
+
+        .nav li.active {
+            background-color: #e9f7fe;
+            color: #448ef7;
+            border-right: 4px solid #448ef7;
+        }
+
+        .setting {
+            padding: 0 30px;
+        }
+
+        .box {
+            display: flex;
+        }
+
+        .form-box {
+            width: 450px;
+
+        }
+
+        .form-group {
+            padding: 10px 0;
+        }
+
+        .form-group label {
+            margin-bottom: 10px;
+        }
+
+        .form-group input[type="text"] {
+            width: 300px;
+            border: 1px solid #ccc;
+            height: 25px;
+            outline: none;
+        }
+
+        #desc {
+            width: 300px;
+            height: 250px;
+            resize: none;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            background-color: blueviolet;
+            color: #fff;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+
+
+        .avatar-box .title {
+            font-weight: bold;
+        }
+
+        .avatar-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+        }
+
+        .avatar {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="nav">
+            <li class="active">基本设置</li>
+            <li>安全设置</li>
+            <li>账号绑定</li>
+            <li>新消息通知</li>
+        </ul>
+        <div class="setting">
+            <h1>基本设置</h1>
+
+            <div class="box">
+                <div class="form-box">
+                    <form action="javascript:;">
+                        <div class="form-group">
+                            <label for="email" style="display: block;">邮箱</label>
+                            <input id="email" type="text" placeholder="请输入邮箱" />
+                        </div>
+                        <div class="form-group">
+                            <label for="nickName" style="display: block;">昵称</label>
+                            <input id="nickName" type="text" placeholder="请输入昵称" />
+                        </div>
+                        <div class="form-group">
+                            <label style="display: block;">性别</label>
+                            <input name="sex" id="man" type="radio" value="0"><label for="man">男</label>
+                            <input name="sex" id="woman" type="radio" value="1"><label for="woman">女</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc" style="display: block;">个人简介</label>
+                            <textarea id="desc"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button id="btn">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="avatar-box">
+                    <div class="title">头像</div>
+                    <img class="img" src="" alt="">
+                    <div class="avatar">更换头像</div>
+                    <input id="upload" type="file" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    // 改造成 form-serialize 写法
+
+    // 修改头像功能
+    const upload = document.querySelector('#upload');
+    const avatar = document.querySelector('.avatar');
+    const img = document.querySelector(".img")
+    const emailDom = document.querySelector("#email")
+    const nickNameDom = document.querySelector("#nickName")
+    const descDom = document.querySelector("#desc")
+    const radioDom = document.querySelectorAll('[type = "radio"]')
+    const btnDom = document.querySelector("#btn")
+
+
+    // 点击更换头像按钮
+    avatar.addEventListener('click', function () {
+        // 拉起选择文件弹窗
+        upload.click()
+    })
+
+    // 监听是否选择了文件
+    upload.addEventListener('change', function (e) {
+        // 获取选择的文件
+        const file = e.target.files[0]
+        // 初始化formdata对象
+        const formData = new FormData()
+        // 添加到formdata对象中
+        formData.append('avatar', file)
+        formData.append('creator', "yangmr")
+        // 调用接口上传图片
+        axios({
+            url: "https://hmajax.itheima.net/api/avatar",
+            method: "PUT",
+            data: formData
+        }).then(res => {
+            console.log(res)
+            const { avatar } = res.data.data
+            img.src = avatar
+        }).catch(error => {
+            console.log(error)
+        })
+    })
+
+
+    // 获取个人信息功能
+    function loadUserInfo() {
+        axios({
+            url: "https://hmajax.itheima.net/api/settings",
+            method: "GET",
+            params: {
+                creator: "yangmr"
+            }
+        }).then(res => {
+            console.log(res)
+            const { avatar, desc, email, gender, nickname } = res.data.data
+            console.log(gender) // 0 男 1女
+            gender === 0 ? radioDom[0].checked = true : radioDom[1].checked = true  // 0 男 1女 转换成 radio 选中状态
+            emailDom.value = email
+            nickNameDom.value = nickname
+            descDom.value = desc
+            img.src = avatar
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+    loadUserInfo()
+
+    // 修改功能
+    btnDom.addEventListener("click", function () {
+        const email = emailDom.value
+        const nickname = nickNameDom.value
+        let gender = ""
+        radioDom.forEach(item => {
+            if (item.checked) {
+                gender = parseFloat(item.value)
+            }
+        })
+        const desc = descDom.value
+        const creator = "yangmr"
+
+        axios({
+            url: "https://hmajax.itheima.net/api/settings",
+            method: "PUT",
+            data: {
+                desc: desc,
+                email: email,
+                gender: gender,
+                nickname: nickname,
+                creator: creator
+            }
+        }).then(res => {
+            console.log(res)
+            alert("修改成功")
+            loadUserInfo()
+        }).catch(error => {
+            console.log(error)
+        })
+    })
+</script>
