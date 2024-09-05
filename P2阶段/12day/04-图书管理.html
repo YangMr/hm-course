@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="font/iconfont.css">
+    <style>
+        .container{
+            margin: 30px auto;
+        }
+        table{
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        table th{
+            background: #939Ca7 !important;
+            text-align: center;
+            font-size: 16px;
+            color : #fff;
+            border-right: 1px solid #fff;
+        }
+        table .del{
+            color : #e5964c;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+        table .edit{
+            color : #539ACB;
+        ;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class=" d-flex justify-content-between">
+            <h4>图书管理</h4>
+
+            <button type="button" class="btn btn-primary">
+                <span class="iconfont icon-jiahao"></span>
+                添加
+            </button>
+        </div>
+
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th scope="col">序号</th>
+                    <th scope="col">书名</th>
+                    <th scope="col">作者</th>
+                    <th scope="col">出版社</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+<!--                <tr>-->
+<!--                    <td>1</td>-->
+<!--                    <td>《三国演义》</td>-->
+<!--                    <td>罗贯中</td>-->
+<!--                    <td>人民文学出版社</td>-->
+<!--                    <td>-->
+<!--                        <span class="del">删除</span>-->
+<!--                        <span class="edit">编辑</span>-->
+<!--                    </td>-->
+<!--                </tr>-->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>-->
+<script src="js/axios.min.js"></script>
+<script>
+
+    // 需求: 渲染图书列表
+    // 前提: 1. 获取到图书的数据 2. 才能进行渲染
+    const tbody = document.querySelector("tbody")
+
+    // 获取图书列表
+    function getBookList(){
+        // 1. 获取到图书的数据
+        axios({
+            url : "https://hmajax.itheima.net/api/books",
+            method : "GET",
+            params : {
+                creator : "YangLing"
+            }
+        }).then(res => {
+
+            const {data} = res.data
+
+            console.log(data)
+
+            // 2. 才能进行渲染
+            const htmlStr = data.map((item,index) => {
+                 const {id, bookname , author, publisher} = item
+                return `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${bookname}</td>
+                        <td>${author}</td>
+                        <td>${publisher}</td>
+                        <td>
+                            <span class="del">删除</span>
+                            <span class="edit">编辑</span>
+                        </td>
+                    </tr>
+                `
+            })
+
+            tbody.innerHTML = htmlStr.join("")
+
+
+        }).catch(err => {
+            console.log(err)
+        })
+
+    }
+    getBookList()
+</script>
