@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        ul{
+            list-style-type: none;
+        }
+        body{
+            background: linear-gradient(135deg, #50B1FF 0%, #1F57D6 100%);
+        }
+        .search-wrapper{
+            position: absolute;
+            right: 100px;
+            top:100px;
+        }
+        .search{
+            width: 250px;
+            height: 30px;
+            border-radius: 15px;
+            border:none;
+            background: rgba(255,255,255,0.3);
+            color : #fff;
+            outline: none;
+            padding-left: 13px;
+        }
+        .search::placeholder{
+            color : #fff;
+        }
+        ul{
+            background: #fff;
+            min-height: 200px;
+            margin-top: 10px;
+            display: none;
+        }
+        ul li{
+            height: 40px;
+            line-height: 40px;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+        ul li:hover{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-wrapper">
+        <input class="search" type="text" placeholder="搜索城市" />
+        <ul class="list">
+<!--            <li>西安 - 陕西省</li>-->
+<!--            <li>西安 - 陕西省</li>-->
+<!--            <li>西安 - 陕西省</li>-->
+        </ul>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script src="js/axios.js"></script>
+<script>
+
+    // 获取搜索框
+    const search = document.querySelector(".search")
+    // 获取列表
+    const list = document.querySelector(".list")
+
+    // 绑定输入事件
+    search.addEventListener("input", function () {
+        if(this.value.length > 0){
+            list.style.display = "block"
+        }else{
+            list.style.display = "none"
+        }
+
+        getCityList(this.value)
+    })
+
+    // 查询城市数据
+    const getCityList = _.debounce(function (value){
+        axios({
+            url : "https://hmajax.itheima.net/api/weather/city",
+            method : "GET",
+            params : {
+                city :value
+            }
+        }).then(res => {
+            console.log(res)
+            const htmlStr = res.data.map((item,index) => {
+                if(index <= 5){
+                    const { name } = item
+                    return `
+                        <li>${name}</li>
+                     `
+                }
+
+            })
+
+            list.innerHTML = htmlStr.join("")
+        }).catch(err => {
+            console.log(err)
+        })
+    }, 500)
+
+
+</script>
