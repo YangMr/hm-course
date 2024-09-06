@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 需求: 使用XMLHttpRequest发送请求
+
+    // 1. 创建XMLHttpRequest对象
+   const xhr =  new XMLHttpRequest()
+
+    // 2. 设置 请求方式 与 请求的url地址
+    xhr.open("GET", "https://hmajax.itheima.net/api/province")
+
+    // 3. 接受请求成功的结果
+    xhr.addEventListener("loadend", function (){
+        console.log( JSON.parse(xhr.response))
+    })
+
+    // 4. 发送请求
+    xhr.send()
+
+
+
+</script>
+

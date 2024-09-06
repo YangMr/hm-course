@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="city"></div>
+</body>
+</html>
+<script>
+  /**
+   * 需求：通过 XMLHttpRequest 获取某个省份的所有城市，渲染到页面上
+   */
+
+  const city = document.querySelector(".city")
+
+  // 1. 创建XMLHttpRequest对象
+  const xhr = new XMLHttpRequest()
+
+  // 2. 设置请求方式 与 请求的url
+  xhr.open("GET", "https://hmajax.itheima.net/api/city?pname=湖北省")
+
+  // 3. 接受请求成功的数据
+  xhr.addEventListener("loadend", function (){
+    const res = JSON.parse(xhr.response)
+    console.log(res)
+    const { list }=  res
+    const htmlStr = list.map(item => {
+      return `
+        <div>${item}</div>
+      `
+    })
+    city.innerHTML = htmlStr.join("")
+  })
+
+  // 4. 发送请求
+  xhr.send()
+</script>

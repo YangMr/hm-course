@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" class="account" placeholder="请输入账号" />
+
+    <br />
+
+    <input type="text" class="password" placeholder="请输入密码" />
+
+    <button>注册</button>
+</body>
+</html>
+<script>
+
+    const btn = document.querySelector("button")
+    const account = document.querySelector(".account")
+    const password = document.querySelector(".password")
+    btn.addEventListener("click", function (){
+        // 1. 获取输入框输入的数据
+        const userValue = account.value
+        const passValue = password.value
+
+
+        // 2. 发送请求
+        const xhr = new XMLHttpRequest()
+        xhr.open("POST", "https://hmajax.itheima.net/api/register")
+        xhr.addEventListener("loadend", function (){
+            const res = JSON.parse(xhr.response)
+            console.log(res)
+        })
+        // 设置请求头发送的数据为json类型
+        xhr.setRequestHeader("Content-Type", "application/json")
+        const obj = {
+            username : userValue,
+            password : passValue
+        }
+        xhr.send(JSON.stringify(obj))
+
+    })
+
+</script>

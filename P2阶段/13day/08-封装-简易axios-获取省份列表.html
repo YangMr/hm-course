@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button>获取省份列表数据</button>
+<div id="box"></div>
+</body>
+</html>
+<script>
+
+
+    const btn = document.querySelector("button")
+    const box = document.querySelector("#box")
+
+    // 简易版的axios
+    function axios(config){
+        return new Promise(function (resolve, reject){
+            // 创建XMLHttpRequest
+            const xhr = new XMLHttpRequest()
+
+            // 设置请求的方式 以及 请求的url地址
+            xhr.open(config.method || "GET" , config.url)
+
+            // 接受请求的结果
+            xhr.addEventListener("loadend", function () {
+                if(xhr.status >= 200 && xhr.status <= 300){
+                    const res = JSON.parse(xhr.response)
+                    resolve(res)
+                }else{
+                    reject(new Error(xhr.response))
+                }
+
+            })
+
+            // 发送请求
+            xhr.send()
+        })
+    }
+
+
+    btn.addEventListener("click", function () {
+        axios({
+            url : "https://hmajax.itheima.net/api/province",
+            method : "GET"
+        }).then(res => {
+            console.log(res)
+
+            const htmlStr = res.list.map(item => {
+                return `
+                    <div>${item}</div>
+                `
+            })
+
+            box.innerHTML = htmlStr.join("")
+        }).catch(err => {
+            console.log(err)
+        })
+    })
+
+
+
+</script>

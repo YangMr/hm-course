@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button>获取省份数据</button>
+</body>
+</html>
+<script>
+    const btn = document.querySelector("button")
+
+    const p = new Promise(function (resolve, reject){
+        btn.addEventListener("click", function (){
+            // 创建XMLHttpRequest对象
+            const xhr = new XMLHttpRequest()
+
+            // 设置请求的方式 与 请求的url地址
+            xhr.open("GET", "https://hmajax.itheima.net/api/province/123")
+
+            // 接受请求成功的结果
+            xhr.addEventListener("loadend", function (){
+                // 请求的状态
+                console.log(xhr.status)
+                // 请求成功
+                if(xhr.status >= 200 && xhr.status <= 300){
+                    const res = JSON.parse(xhr.response)
+                    resolve(res)
+                }else{
+                    // 请求失败
+                    reject(new Error(xhr.response))
+                }
+
+            })
+
+            // 发送请求
+            xhr.send()
+
+        })
+    })
+
+    // .then 是promise独有的
+
+    p.then(res => {
+        console.log("aaa",res)
+    }).catch(err => {
+        console.log(err)
+    })
+
+
+
+
+</script>

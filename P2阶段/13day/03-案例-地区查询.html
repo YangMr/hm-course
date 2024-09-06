@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .container {
+            margin: 20px auto;
+        }
+
+        .search-btn {
+            margin-left: 18px;
+        }
+
+        .title {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>省份/直辖市名字</label>
+                <input type="text" value="北京" class="form-control p" placeholder="请输入省份名称">
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>城市名字</label>
+                <input type="text" value="北京市" class="form-control c" placeholder="请输入城市名称">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-primary search-btn">查询</button>
+    </div>
+
+    <div class="title">地区列表:</div>
+
+    <table class="table table-striped table-bordered">
+        <tbody>
+        <!-- <tr>
+            <td>中原区</td>
+        </tr>
+        <tr>
+            <td>中原区</td>
+        </tr>
+        <tr>
+            <td>中原区</td>
+        </tr>
+        <tr>
+            <td>中原区</td>
+        </tr> -->
+        </tbody>
+
+    </table>
+</div>
+</body>
+
+</html>
+<script>
+
+    // 1. 获取查询按钮
+    const searchBtn = document.querySelector(".search-btn")
+
+    // 3. 获取输入的省份名称元素
+    const p = document.querySelector(".p")
+
+    // 4. 获取输入的城市名称元素
+    const c = document.querySelector(".c")
+
+    const tbody = document.querySelector("tbody")
+
+    // 2. 绑定点击事件
+    searchBtn.addEventListener("click", function (){
+        // 5. 获取省份名称
+        const pname = p.value
+        // 6. 获取城市名称
+        const cname = c.value
+
+        // 7. 创建 XMLHttpRequest对象
+        const xhr = new XMLHttpRequest()
+
+        // 13. 传递查询参数
+        const params = {
+            pname,
+            cname
+        }
+        // 14. 将对象转化为get方式的查询参数
+        const str = new URLSearchParams(params).toString()
+
+        // 8. 设置请求方式 与 请求的地址
+        xhr.open("GET", `https://hmajax.itheima.net/api/area?${str}`)
+
+        // 9. 接受请求成功的结果
+        xhr.addEventListener("loadend", function (){
+            // 10. 解析请求成功的数据
+            const res = JSON.parse(xhr.response)
+
+            // 11. 控制台输出查看
+            console.log(res)
+
+            const { list } = res
+
+            const htmlStr = list.map(item => {
+                return `
+                    <tr>
+                        <td>${item}</td>
+                    </tr>
+                `
+            })
+
+            tbody.innerHTML = htmlStr.join("")
+        })
+
+        // 12. 发送请求
+        xhr.send()
+    })
+
+
+    // params : {
+    //     pname : "陕西",
+    //     cname : "西安"
+    // }
+
+    // ?pname=陕西&cname=西安
+
+    // URLSearchParams
+</script>

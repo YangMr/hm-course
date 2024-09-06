@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // promise使用的方式
+
+    // 1. 实例化promise对象
+    // 2. 在promise里面定义回调函数
+    // 3. 在回调函数中定义resolve 与 reject 参数
+    // 4. 根据需求,可以使用resolve将成功的结果返回
+    // 5. reject将失败的结果进行返回
+    // 6. 可以通过.then接受resolve返回的结果
+    // 7. 可以通过.catch 接受reject返回的结果
+
+    // resolve 返回成功的结果
+    // reject  返回失败的结果
+    const p = new Promise(function (resolve,reject){
+        // setTimeout(function (){
+        //     resolve(10)
+        // },1000)
+
+        setTimeout(function (){
+            reject(new Error("请求失败"))
+        },1000)
+    })
+
+    p.then(res=>{
+       console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+
+
+</script>
