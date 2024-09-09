@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+
+// 获取省份数据
+ function getPro(){
+     const res = axios({
+        url: "https://hmajax.itheima.net/api/province",
+        method: "GET"
+    });
+     return res
+}
+
+// console.log(getPro())
+
+// 获取市的数据
+async function getCity() {
+    const res = await getPro()
+    const result =await axios({
+        url :"https://hmajax.itheima.net/api/city",
+        method : "GET",
+        params : {
+            pname : res.data.list[0]
+        }
+    })
+
+    return [res.data.list[0], result.data.list[0]]
+}
+
+// 获取区的数据
+async function getArea(){
+    const res = await getCity()
+
+    const  data = await  axios({
+        url : "https://hmajax.itheima.net/api/area",
+        method : "GET",
+        params : {
+            pname : res[0],
+            cname : res[1]
+        }
+    })
+
+    console.log("Resaaaaaa",data)
+}
+
+getArea()
+
+
+
+
+</script>

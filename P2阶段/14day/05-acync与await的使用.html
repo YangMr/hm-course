@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+// function test() {
+//
+// }
+// // 结果是什么  undefined
+// console.log(test())
+
+
+// function test() {
+//     return "123"
+// }
+// // 结果是什么  "123"
+// console.log(test())
+
+
+// function test() {
+//     return "hello"
+// }
+// // 结果是什么 hello
+// console.log(test())
+
+// function test() {
+//     return ["12","34","45"]
+// }
+// // 结果是什么 ["12","34","45"]
+// console.log(test())
+
+//
+// function test() {
+//     return {name : "jack", age : 10}
+// }
+// // 结果是什么 {name : "jack", age : 10}
+// console.log(test())
+
+
+// function test() {
+//     return new Promise(function (resolve,reject) {
+//         resolve("123")
+//     })
+// }
+// // 结果是什么
+// console.log(test())
+
+// async function test() {
+//     return "123"
+// }
+// // 结果是什么
+// console.log(test())
+
+// async 特点: 会把函数编程promise的对象  返回的返回值会变成promise的结果
+
+// async function test() {
+//     axios({
+//         url :"https://hmajax.itheima.net/api/province",
+//         method : "GET"
+//     }).then(res => {
+//         console.log("res==>", res)
+//     })
+// }
+// // 结果是什么
+// console.log(test())
+
+
+// await 与 .then 区别是什么  await 同步 async 异步  .then异步  new promise 同步
+// async function test() {
+//     const res = await axios({
+//         url :"https://hmajax.itheima.net/api/province",
+//         method : "GET"
+//     })
+//     console.log("res==>", res)
+// }
+// // 结果是什么
+// console.log(test())
+
+
+async function test() {
+    // 获取省份数据
+    const p = await axios({
+        url :"https://hmajax.itheima.net/api/province",
+        method : "GET"
+    })
+
+
+    // 获取城市的数据
+    const c = await axios({
+        url : "https://hmajax.itheima.net/api/city",
+        method : "GET",
+        params : {
+            pname : p.data.list[0]
+        }
+    })
+
+    // 获取区的数据
+    const a = await axios({
+        url : "https://hmajax.itheima.net/api/area",
+        method : "GET",
+        params : {
+            pname : p.data.list[0],
+            cname : c.data.list[0]
+        }
+    })
+
+    console.log(a)
+}
+// 结果是什么
+// console.log(test())
+test()
+</script>

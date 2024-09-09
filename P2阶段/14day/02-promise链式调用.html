@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+    const p = new Promise(function (resolve,reject) {
+        setTimeout(function () {
+            resolve(1234)
+        },1000)
+    })
+
+   p.then(res => {
+       console.log(res)
+       return res + "5678"
+   }).then(res => {
+       // 下一个.then获取到的是上一个.then的返回值
+       console.log(res)
+       return res
+   }).then(res => {
+       console.log(res)
+   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function test(){
+    //     return new Promise(function (resolve, reject) {
+    //         resolve("666")
+    //     })
+    // }
+    //
+    //
+    //
+    // test().then(res => {
+    //     console.log(res)
+    // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

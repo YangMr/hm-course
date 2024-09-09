@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .row{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h1>选择省市区</h1>
+
+
+    <div class="row">
+        <div>
+
+            <select id="province">
+<!--                <option value="陕西省">陕西省</option>-->
+            </select>
+            省:
+        </div>
+        <div>
+
+            <select id="citys">
+<!--                <option value="西安市">西安市</option>-->
+            </select>
+            市:
+        </div>
+        <div>
+
+            <select id="areas">
+<!--                <option value="长安区">长安区</option>-->
+            </select>
+            区:
+        </div>
+    </div>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    // 获取省份的下拉框
+    const province = document.querySelector("#province")
+    // 获取城市的下拉框
+    const citys = document.querySelector("#citys")
+    // 获取区的下拉框
+    const areas = document.querySelector("#areas")
+
+    // 获取省份
+    axios({
+        url : "https://hmajax.itheima.net/api/province",
+        method : "GET"
+    }).then(res => {
+
+        const htmlStr = res.data.list.map(item => {
+            return `
+                <option value="${item}">${item}</option>
+            `
+        })
+        province.innerHTML = htmlStr.join("")
+
+        return res.data.list[0]
+
+    }).then(res => {
+
+       return axios({
+            url : "https://hmajax.itheima.net/api/city",
+            method:  "GET",
+            params :{
+                pname : res
+            }
+        }).then(result => {
+            console.log("ci", result)
+
+            const htmlStr = result.data.list.map(item => {
+                return `
+                    <option value="${item}">${item}</option>
+                `
+            })
+
+            citys.innerHTML = htmlStr.join("")
+
+            return [res,result.data.list[0]]
+        }).catch(err => {
+            console.log(err)
+        })
+
+
+
+
+
+    }).then(res => {
+        console.log("aaaa",res)
+        axios({
+            url : "https://hmajax.itheima.net/api/area",
+            method : "GET",
+            params : {
+                pname : res[0],
+                cname : res[1]
+            }
+        }).then(res => {
+            console.log("area", res)
+
+            const htmlStr = res.data.list.map(item => {
+                return `
+                 <option value="${item}">${item}</option>
+                `
+            })
+
+            areas.innerHTML = htmlStr.join("")
+
+
+        }).catch(err => {
+            console.log(err)
+        })
+    }).catch(err => {
+        console.log(err)
+    })
+
+
+
+</script>
