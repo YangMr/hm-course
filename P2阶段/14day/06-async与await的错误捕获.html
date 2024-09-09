@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    async function getPro(){
+
+        // axios({url : "https://hmajax.itheima.net/api/province/123", method : "GET"}).then(res => {
+        //
+        // }).catch(err => {
+        //     console.log(err)
+        // })
+
+        const res = await  axios({url : "https://hmajax.itheima.net/api/province/123", method : "GET"})
+        console.log(res)
+
+        console.log("123")
+    }
+    getPro()
+
+
+
+
+    // 后续的http请求, 如果async 与 await 去处理, 尽量使用try catch去捕获错误
+    // async function getPro(){
+    //
+    //     try{
+    //         const res = await axios({url : "https://hmajax.itheima.net/api/province/123", method : "GET"})
+    //     }catch (e) {
+    //         console.log(e.response.data.message)
+    //     }
+    //
+    //     console.log("123")
+    // }
+    // getPro()
+
+</script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click</button>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+
+  // 1
+    console.log("1"); // 同步
+
+
+    setTimeout(() => { // 宏任务
+        console.log("2");
+    }, 1000);
+
+
+    Promise.resolve()
+        .then(function () { // 微任务
+            console.log(3);
+        }).then(function () { // 微任务
+            console.log(4);
+        });
+
+    async function foo() { // promise 同步
+        let a = await bar(); //
+
+        console.log(5);
+    }
+    foo();
+
+    async function errorFunc() {
+        try {
+            await Promise.reject(6);
+
+        } catch (e) {
+            console.log(e); // 微任务
+        }
+        console.log(7); // 同步
+        return Promise.resolve(8);
+    }
+    errorFunc().then((res) => console.log(res)); // 微任务
+
+    function bar() { // 微任务
+        console.log("9");
+    }
+
+    console.log("10"); // 同步
+
+
+  // 1  9 10  3  5    6   7   4  8  2
+
+</script>

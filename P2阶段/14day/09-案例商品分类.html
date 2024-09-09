@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            width: 1100px;
+            margin: 100px auto;
+        }
+        h3{
+            text-align: center;
+        }
+        ul{
+            list-style-type: none;
+            display: flex;
+            text-align: center;
+        }
+        ul li{
+            padding:20px;
+            margin-right: 20px;
+        }
+
+        ul img{
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+<!--        <div class="item">-->
+<!--            <h3>家居</h3>-->
+<!--            <ul>-->
+<!--                <li>-->
+<!--                    <img src="https://yanxuan.nosdn.127.net/3102b963e7a3c74b9d2ae90e4380da65.png?quality=95&imageView" alt="">-->
+<!--                    <p>茶咖酒局</p>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <img src="https://yanxuan.nosdn.127.net/3102b963e7a3c74b9d2ae90e4380da65.png?quality=95&imageView" alt="">-->
+<!--                    <p>茶咖酒局</p>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <img src="https://yanxuan.nosdn.127.net/3102b963e7a3c74b9d2ae90e4380da65.png?quality=95&imageView" alt="">-->
+<!--                    <p>茶咖酒局</p>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <img src="https://yanxuan.nosdn.127.net/3102b963e7a3c74b9d2ae90e4380da65.png?quality=95&imageView" alt="">-->
+<!--                    <p>茶咖酒局</p>-->
+<!--                </li>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+    </div>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    const wrap = document.querySelector(".wrapper")
+    async function getCategoryList() {
+        const res = await  axios({
+            url : "https://hmajax.itheima.net/api/category/top",
+            method : "GET"
+        })
+
+        const oneData = res.data.data
+
+       const result = oneData.map(item => {
+           return axios({
+                url : "https://hmajax.itheima.net/api/category/sub",
+                method : "GET",
+                params : {
+                    id : item.id
+                }
+            })
+        })
+
+         const data = await Promise.all(result)
+        // console.log(data)
+        const htmlStr = data.map(item => {
+            const {name, children} = item.data.data
+            return `
+                <div class="item">
+                <h3>${name}</h3>
+                <ul>
+                    ${children.map(v => {
+                        return `
+                                <li>
+
+                                 <img src="${v.picture}" alt="" />
+                                    <p>${v.name}</p>
+                                </li>
+                            `
+                     }).join("")
+                    }
+                </ul>
+            </div>
+            `
+        })
+
+        wrap.innerHTML = htmlStr.join("")
+
+    }
+
+    getCategoryList()
+
+
+</script>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click</button>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+
+    // 请求10个接口
+
+    const a1 = axios({
+        url : "https://hmajax.itheima.net/api/province",
+        method : "GET"
+    })
+    const a2 = axios({
+        url : "https://hmajax.itheima.net/api/category/top",
+        method : "GET"
+    })
+    // const a3 = axios({
+    //     url : "请求3",
+    //     method : "GET"
+    // })
+    // const a4 = axios({
+    //     url : "请求4",
+    //     method : "GET"
+    // })
+
+
+    Promise.all([a1,a2]).then(res => {
+        // array
+        console.log("111",res)
+    }).catch(err => {
+        console.log(err)
+    })
+
+    Promise.race([a1,a2]).then(res => {
+        // array
+        console.log("222",res)
+    }).catch(err => {
+        console.log(err)
+    })
+
+    // axios({
+    //     url : "请求1",
+    //     method : "GET"
+    // }).then(res=>{
+    //     console.log(res)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+    //
+    // axios({
+    //     url : "请求1",
+    //     method : "GET"
+    // }).then(res=>{
+    //     console.log(res)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+    //
+    // axios({
+    //     url : "请求1",
+    //     method : "GET"
+    // }).then(res=>{
+    //     console.log(res)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+    //
+    // axios({
+    //     url : "请求1",
+    //     method : "GET"
+    // }).then(res=>{
+    //     console.log(res)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+
+
+</script>

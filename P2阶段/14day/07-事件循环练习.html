@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click</button>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+    // 同步 然后 .then  在执行 定时器 在执行 http请求
+    const btn = document.querySelector("#btn")
+    // 1  7  6   8   2  3    4  5
+   console.log(1) // 同步
+
+   setTimeout(function () { // 异步
+       console.log(2)
+   },0)
+
+   setTimeout(function () { // 异步
+       console.log(3)
+   },0)
+
+   const p = new Promise(function (resolve, reject){ // 同步
+       console.log(7)
+       resolve("123")
+   })
+
+    p.then(res => { // 异步
+        console.log(8)
+    })
+
+   function  getPro(){
+      const xhr = new XMLHttpRequest()
+       xhr.open("GET", "https://hmajax.itheima.net/api/province")
+       xhr.addEventListener("loadend", function () { //异步
+           console.log(4)
+       })
+       xhr.send()
+   }
+   getPro()
+
+    btn.addEventListener("click", function (){ //异步
+        console.log(5)
+    })
+
+    console.log(6) // 同步
+
+
+</script>

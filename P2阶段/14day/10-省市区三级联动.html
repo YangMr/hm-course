@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div>
+            地区选择:
+            <select  id="p">
+<!--                <option value="北京">北京</option>-->
+            </select>
+            <select  id="c">
+<!--                <option value="北京市">北京市</option>-->
+            </select>
+            <select  id="a">
+<!--                <option value="海淀区">海淀区</option>-->
+            </select>
+        </div>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+
+    document.querySelector("#p").innerHTML = `<option>省份</option>`
+    document.querySelector("#c").innerHTML = `<option>城市</option>`
+    document.querySelector("#a").innerHTML = `<option>地区</option>`
+
+    // 需求1: 获取省份列表
+    async function getProvince(){
+       const res = await axios({
+            url : "https://hmajax.itheima.net/api/province",
+            method : "GET"
+        })
+
+        const htmlStr = res.data.list.map(item => {
+            return `
+                 <option value="${item}">${item}</option>
+            `
+        })
+        document.querySelector("#p").innerHTML = htmlStr.join("")
+
+    }
+    getProvince()
+
+    // 获取所选的省份
+    document.querySelector("#p").addEventListener("change",async  function () {
+        console.log(this.value)
+
+        // 获取城市数据
+       const res = await axios({
+           url : "https://hmajax.itheima.net/api/city",
+           method : "GET",
+           params : {
+               pname : this.value
+           }
+       })
+
+        console.log("citys",res.data.list)
+        const htmlStr = res.data.list.map(item => {
+            return `
+                <option value="${item}">${item}</option>
+            `
+        })
+
+        document.querySelector("#c").innerHTML =htmlStr.join("")
+
+    })
+
+    document.querySelector("#c").addEventListener("change", async function (){
+        // console.log(this.value)
+        const res = await axios({
+            url : "https://hmajax.itheima.net/api/area",
+            method : "GET",
+            params : {
+                pname : document.querySelector("#p").value,
+                cname : this.value
+            }
+        })
+        console.log("aaa", res)
+
+        const htmlStr = res.data.list.map(item => {
+            return `
+                 <option value="${item}">${item}</option>
+            `
+        })
+        document.querySelector("#a").innerHTML = htmlStr.join()
+    })
+
+
+</script>
