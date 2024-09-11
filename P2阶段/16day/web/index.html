@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入省份" />
+    <button>查询</button>
+</body>
+</html>
+<script src="js/axios.min.js"></script>
+<script>
+    const btn = document.querySelector("button")
+    const ipt = document.querySelector("input")
+
+
+    btn.addEventListener("click", async function () {
+        const val = ipt.value.trim()
+        console.log(val)
+
+       const res = await axios({
+            url : "http://localhost:3000/api/city",
+            method : "GET",
+            params : {
+                pname : val
+            }
+        })
+
+       console.log(res)
+    })
+</script>
