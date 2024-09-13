@@ -12,3 +12,5 @@ function get(num?: string) {
 }
 
 get();
+
+export {};
