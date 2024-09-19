@@ -5,6 +5,9 @@
     "pages/01/category",
     "pages/01/article",
     "pages/01/question",
-    "pages/01/my"
+    "pages/01/my",
+    "pages/02/App",
+    "pages/02/views/IndexPage",
+    "pages/03/HomePage"
   ]
 }
