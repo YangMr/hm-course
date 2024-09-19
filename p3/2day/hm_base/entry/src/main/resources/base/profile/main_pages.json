@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/01/home",
+    "pages/01/category",
+    "pages/01/article",
+    "pages/01/question",
+    "pages/01/my"
+  ]
+}
