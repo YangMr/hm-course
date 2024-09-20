@@ -12,6 +12,8 @@
     "pages/04/Stack/StackPage",
     "pages/04/Flex/FlexPage",
     "pages/04/Grid/GridPage",
-    "pages/04/RelativeContainer/RelativeContainerPage"
+    "pages/04/RelativeContainer/RelativeContainerPage",
+    "pages/04/Scroll/ScrollPage",
+    "pages/04/Event/EventPage"
   ]
 }
