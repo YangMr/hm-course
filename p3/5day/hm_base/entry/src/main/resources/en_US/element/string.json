@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "my_first_name",
+      "value": "LingYang"
     }
   ]
 }
