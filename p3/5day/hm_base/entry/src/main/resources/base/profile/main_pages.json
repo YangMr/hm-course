@@ -1,0 +1,25 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/01/home",
+    "pages/01/category",
+    "pages/01/article",
+    "pages/01/question",
+    "pages/01/my",
+    "pages/02/App",
+    "pages/02/views/IndexPage",
+    "pages/03/HomePage",
+    "pages/04/Stack/StackPage",
+    "pages/04/Flex/FlexPage",
+    "pages/04/Grid/GridPage",
+    "pages/04/RelativeContainer/RelativeContainerPage",
+    "pages/04/Scroll/ScrollPage",
+    "pages/04/Event/EventPage",
+    "pages/05/StatePage",
+    "pages/05/DemoPage1",
+    "pages/05/DemoPage2",
+    "pages/05/LoginPage",
+    "pages/05/AddressPage",
+    "pages/05/MvvmPage"
+  ]
+}
