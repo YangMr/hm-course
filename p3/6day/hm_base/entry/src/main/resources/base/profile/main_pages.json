@@ -17,6 +17,23 @@
     "pages/04/Event/EventPage",
     "pages/05/StatePage",
     "pages/05/DemoPage1",
-    "pages/05/DemoPage2"
-  ]
+    "pages/05/DemoPage2",
+    "pages/05/LoginPage",
+    "pages/05/AddressPage",
+    "pages/05/MvvmPage",
+    "pages/06/GlobalPage",
+    "pages/06/VPPage",
+    "pages/06/layoutWeightPage",
+    "pages/06/aspectRatioPage",
+    "pages/06/imagePage",
+    "pages/06/ColorPage",
+    "pages/06/i18nPage",
+    "pages/07/CommentPage",
+    "pages/07/StylePage",
+    "pages/07/ExtendPage",
+    "pages/07/StateStylesPage"
+  ],
+  "window": {
+    "designWidth": 360
+  }
 }
