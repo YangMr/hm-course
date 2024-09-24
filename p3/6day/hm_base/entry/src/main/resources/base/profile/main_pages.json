@@ -31,7 +31,13 @@
     "pages/07/CommentPage",
     "pages/07/StylePage",
     "pages/07/ExtendPage",
-    "pages/07/StateStylesPage"
+    "pages/07/StateStylesPage",
+    "pages/07/ConditionPage",
+    "pages/07/ConditionPage2",
+    "pages/07/LoadingPage",
+    "pages/07/ForEachPage",
+    "pages/07/ForEachPage2",
+    "pages/07/RefreshPage"
   ],
   "window": {
     "designWidth": 360
