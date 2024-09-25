@@ -2,6 +2,7 @@ import ZhCommentItem from './components/ZhCommentItem';
 import ZhHeader from './components/ZhHeader';
 import ZhReplyInput from './components/ZhReplyInput';
 import { CommentItemTypeModel } from './model/CommentModel';
+import { window } from '@kit.ArkUI';
 
 
 @Entry
@@ -82,6 +83,14 @@ struct ZhiHuIndexPage {
     likeFlag: false
   })
   scroller: Scroller = new Scroller()
+
+  onPageShow(): void {
+    window.getLastWindow(getContext(this), (err, data) => {
+      if (!err.code) {
+        data.setWindowLayoutFullScreen(true)
+      }
+    });
+  }
 
   // 点赞或者取消点赞的方法
   changeLike(id: number) {

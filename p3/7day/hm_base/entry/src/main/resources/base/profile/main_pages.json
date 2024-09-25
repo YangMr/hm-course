@@ -38,7 +38,9 @@
     "pages/07/ForEachPage",
     "pages/07/ForEachPage2",
     "pages/07/RefreshPage",
-    "pages/ZhiHuCase/ZhiHuIndexPage"
+    "pages/ZhiHuCase/ZhiHuIndexPage",
+    "pages/WeChat/WeChatPage",
+    "pages/WeChat/ChatDetailPage"
   ],
   "window": {
     "designWidth": 360
