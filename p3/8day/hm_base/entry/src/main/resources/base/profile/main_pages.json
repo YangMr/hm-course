@@ -46,7 +46,11 @@
     "pages/08/BuilderCasePage",
     "pages/08/EditBuilderParamsPage",
     "pages/08/FormBuilderPage",
-    "pages/08/TabBarPage"
+    "pages/08/TabBarPage",
+    "pages/08/BuliderParamsCasePage",
+    "pages/08/ListBuliderParamsCasePage",
+    "pages/08/CasePage",
+    "pages/08/SearchHistoryPage"
   ],
   "window": {
     "designWidth": 360
