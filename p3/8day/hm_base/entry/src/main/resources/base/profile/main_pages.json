@@ -45,7 +45,8 @@
     "pages/08/BuilderParamsPage",
     "pages/08/BuilderCasePage",
     "pages/08/EditBuilderParamsPage",
-    "pages/08/FormBuilderPage"
+    "pages/08/FormBuilderPage",
+    "pages/08/TabBarPage"
   ],
   "window": {
     "designWidth": 360
