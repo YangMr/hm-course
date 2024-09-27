@@ -1,5 +1,6 @@
 import BackPlayComponent from './components/BackPlayComponent';
 import PlayControlComponent from './components/PlayControlComponent';
+import ShakeText from './components/ShakeText';
 
 @Entry
 @Component
@@ -9,6 +10,13 @@ struct MusicIndexPage {
 
   build() {
     Column() {
+      Row() {
+        ShakeText()
+      }
+      .layoutWeight(1)
+      .width("100%")
+      .justifyContent(FlexAlign.Center)
+
       Row() {
         // 背景播放组件
         BackPlayComponent()

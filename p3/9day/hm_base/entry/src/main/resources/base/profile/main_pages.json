@@ -58,7 +58,8 @@
     "pages/09/LinkCasePage",
     "pages/09/ChildComponentCasePage",
     "pages/09/components/ProvideAndConsumePage",
-    "pages/09/musicProject/MusicIndexPage"
+    "pages/09/musicProject/MusicIndexPage",
+    "pages/09/selectImageDemo/SelectImageCasePage"
   ],
   "window": {
     "designWidth": 360
