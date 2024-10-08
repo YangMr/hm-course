@@ -15,6 +15,14 @@
     {
       "name": "my_first_name",
       "value": "杨岭"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
     }
   ]
 }

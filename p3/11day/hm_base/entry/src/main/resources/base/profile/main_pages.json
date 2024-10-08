@@ -65,7 +65,11 @@
     "pages/11/ObservedObjectLinkCasePage",
     "pages/11/NotLinkPage",
     "pages/11/RequireCasePage",
-    "pages/11/TrackCasePage"
+    "pages/11/TrackCasePage",
+    "pages/12/LocalStorage01",
+    "pages/12/LocalStorage2",
+    "pages/12/AppStorageCasePage",
+    "pages/12/AppStorageResultPage"
   ],
   "window": {
     "designWidth": 360
