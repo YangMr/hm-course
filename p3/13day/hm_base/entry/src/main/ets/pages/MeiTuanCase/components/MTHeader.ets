@@ -1,5 +1,4 @@
 import { NavListModel } from '../models/navListType'
-import { promptAction } from '@kit.ArkUI'
 
 @Component
 struct MTHeader {
@@ -52,37 +51,15 @@ struct MTHeader {
     })
     .onClick(() => {
       // 把当前所点击的数据, 里面的active变成true, 把非当前数据的active变成false
+      this.navList.forEach((item: NavListModel, index: number) => {
+        if (item.title === title) {
+          item.active = true
+        } else {
+          item.active = false
+        }
 
-      // const navList = this.navList.map((item: NavListModel) => {
-      //   if (item.title === title) {
-      //     item.active = true
-      //   } else {
-      //     item.active = false
-      //   }
-      //   return item
-      // })
-      //
-      // this.navList = navList
-      // const index = this.navList.findIndex((item: NavListModel) => {
-      //   return item.title === title
-      // })
-
-      // this.navList[index].active = true
-      // this.user.address = new IAddressTypeModel(this.user.address)
-      // this.navList[index] = new NavListModel(this.navList[index])
-
-      promptAction.showDialog({
-        message: JSON.stringify(this.navList)
+        this.navList[index] = new NavListModel(item)
       })
-
-
-      // const data = this.navList.find((item: NavListModel) => item.active === active)
-      // data.active = true
-
-
-      // promptAction.showToast({
-      //   message: JSON.stringify(data)
-      // })
     })
   }
 
@@ -130,8 +107,8 @@ struct MTHeader {
       width: {
         bottom: 0.5
       },
-      // color: $r("app.color.top_border_color")
-      color: "red"
+      color: $r("app.color.top_border_color")
+      // color: "red"
     })
   }
 }

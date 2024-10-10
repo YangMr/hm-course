@@ -1,3 +1,4 @@
+import MTCart from './components/MTCart';
 import MTFooter from './components/MTFooter';
 import MTHeader from './components/MTHeader';
 import MTMain from './components/MTMain';
@@ -18,6 +19,9 @@ struct MTIndexPage {
         }
         .height("100%")
         .width("100%")
+
+        // 4. 购物车
+        MTCart()
 
         // 3. 底部
         MTFooter()
