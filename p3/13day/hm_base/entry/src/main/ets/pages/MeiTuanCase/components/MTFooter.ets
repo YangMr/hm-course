@@ -1,5 +1,8 @@
 @Component
 struct MTFooter {
+  @Consume("showCart")
+  showCart: boolean
+
   build() {
     Row() {
       Row() {
@@ -16,11 +19,16 @@ struct MTFooter {
             .position({
               y: -19
             })
+
         }
         .margin({
           left: 25,
           right: 10
         })
+        .onClick(() => {
+          this.showCart = !this.showCart
+        })
+
 
         Column() {
           Text() {

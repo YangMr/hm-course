@@ -6,7 +6,8 @@ import MTMain from './components/MTMain';
 @Entry
 @Component
 struct MTIndexPage {
-  @State message: string = 'Hello World';
+  @Provide
+  showCart: boolean = false
 
   build() {
     Column() {
@@ -21,7 +22,10 @@ struct MTIndexPage {
         .width("100%")
 
         // 4. 购物车
-        MTCart()
+        if (this.showCart) {
+          MTCart()
+        }
+
 
         // 3. 底部
         MTFooter()
