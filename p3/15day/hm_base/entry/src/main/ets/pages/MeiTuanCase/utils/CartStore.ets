@@ -30,7 +30,7 @@ export class CartStore {
       list[index].count--
 
       if (list[index].count === 0) {
-        list.slice(index, 1) // 昨天把单词写错了, 将splice写成slice, 所以导致数量为0时商品不能删除
+        list.splice(index, 1) // 昨天把单词写错了, 将splice写成slice, 所以导致数量为0时商品不能删除
       } else {
         list.splice(index, 1, list[index])
       }
