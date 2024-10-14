@@ -57,7 +57,7 @@ export default class EntryAbility extends UIAbility {
     //   hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     // });
 
-    windowStage.loadContent("pages/onLineCase/onLineIndexPage", (err) => {
+    windowStage.loadContent("pages/14/RouterCasePage01", (err) => {
       // 键盘避让
       windowStage.getMainWindowSync().getUIContext()
         .setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)
