@@ -20,32 +20,18 @@ struct Article {
   @State
   total: number = 0
   @State
-  @Watch("filterData")
-  articleList: ResponseArticleListItemType[] = []
-  @State
-  @Watch("filterData")
-  newArticleList: ResponseArticleListItemType[] = []
-
-  // articleList: ResponseArticleListItemModel[] = [] as ResponseArticleListItemModel[]
+  articleList: ResponseArticleListItemType[] = [] as ResponseArticleListItemType[]
 
   // 组件加载完毕的方法
   async aboutToAppear() {
     await this.initCategoryList()
     await this.initArticleList()
-
   }
 
   async changeTab() {
     const id = this.categoryList[this.activeIndex].id || ""
     this.queryParams.categoryId = id as number
     await this.initArticleList()
-  }
-
-  filterData() {
-    this.newArticleList = this.articleList
-    AlertDialog.show({
-      message: JSON.stringify(this.newArticleList)
-    })
   }
 
   // 加载分类列表的方法
@@ -72,10 +58,7 @@ struct Article {
     try {
       const res = await getArticleList(this.queryParams)
       this.total = res.total
-      // this.total = new ResponseArticleListTypeModel(res).total
       this.articleList = res.records
-      // this.articleList = new ResponseArticleListTypeModel(res).records
-
     } catch (e) {
       console.log(e)
     }
@@ -84,7 +67,7 @@ struct Article {
   @Builder
   articleListBuilder() {
     List() {
-      ForEach(this.newArticleList, (item: ResponseArticleListItemType) => {
+      ForEach(this.articleList, (item: ResponseArticleListItemType) => {
         ListItem() {
           Row() {
             Column({ space: 5 }) {
@@ -141,12 +124,14 @@ struct Article {
             color: "#eee"
           })
           .alignItems(VerticalAlign.Top)
+
         }
-      }, (item: ResponseArticleListItemType) => item.id.toString())
+      })
     }
     .width("100%")
     .height("100%")
     .layoutWeight(1)
+
   }
 
   build() {

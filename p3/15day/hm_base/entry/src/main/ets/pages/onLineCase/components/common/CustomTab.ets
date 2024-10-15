@@ -10,11 +10,14 @@ import { ResponseCategoryListType } from '../../api/types/categoryType'
 @Component
 struct CustomTab {
   @Prop
+  @Require
   categoryList: ResponseCategoryListType[] = [] as ResponseCategoryListType[]
   @Link
   activeIndex: number
   @BuilderParam
   getContent: () => void = this.defaultContent
+  @Prop
+  customWidth: string = "20%"
 
   @Builder
   defaultContent() {
@@ -37,7 +40,6 @@ struct CustomTab {
                 Text(item.name)
                   .fontColor(this.activeIndex === index ? "rgb(52, 93, 194)" : "")
                   .fontWeight(this.activeIndex === index ? 600 : FontWeight.Normal)
-
                 Text()
                   .width(25)
                   .height(4)
@@ -47,13 +49,12 @@ struct CustomTab {
                     y: 10
                   })
               }
-              .width("20%")
+              .width(this.customWidth)
               .height("100%")
               .justifyContent(FlexAlign.Center)
               .onClick(() => {
                 this.activeIndex = index
               })
-
             }
           }, (item: ResponseCategoryListType) => item.id.toString())
         }
@@ -73,7 +74,10 @@ struct CustomTab {
       })
       .backgroundColor("#fff")
 
+
       this.getContent()
+
+
     }
     .width("100%")
     .layoutWeight(1)
