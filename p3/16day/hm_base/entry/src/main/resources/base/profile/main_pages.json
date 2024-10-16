@@ -81,7 +81,8 @@
     "pages/14/RouterCasePage01",
     "pages/14/RouterCasePage02",
     "pages/14/RouterCasePage03",
-    "pages/14/RouterCasePage04"
+    "pages/14/RouterCasePage04",
+    "pages/onLineCase/onLineIndexPage"
   ],
   "window": {
     "designWidth": 360
